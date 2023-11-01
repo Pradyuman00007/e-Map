@@ -1,271 +1,420 @@
-const departments = {
-    National_Environmental_Engineering_Research_Institute_NEERI_Nagpur: ["APC","BDPMD","CHWMD","CTMD","CZC","DRC","DZC","EAPID","EBGD","EISD","EMD","ERMD","EVC","HTC","HZC","KZC","MZC","SEAF","SS","TSDD","WRD","WTMD","WWT"],
-    
-    // Define departments for each institute
-};
+const filePath = 'db.json';
 
-const names = {
+function fetchAndPopulateSelects() {
+  fetch(filePath)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const jsonData = data;
+      const instituteSelect = document.getElementById('institute');
+      const departmentSelect = document.getElementById('department');
+      const employeeSelect = document.getElementById('name');
 
-    "APC": ["A. Lalwani","A. D. Bhanarkar","K. V. George","N. Mandal","R. V. Vyawahare","V. Khaparde"],
-    "BDPMD": ["A. K. Bansiwal","P. R. Salve","S. Dabe"],
-    "CHWMD": ["A. N. Vaidya","G. R. Kale","J. Joseph","M. P. Patil","S. Y. Bodkhe","A. R. Kumar"],
-    "CTMD": ["A. Sargaonkar","A. Sharma","H. Bherwani","P. J. Prasad","P. S. Kumar","R. Biniwale","R. Kadaverugu","Y. Pakade"],
-    "CZC": ["M. T. Arasu","R. Sivacoumar"],
-    "DRC": ["S. Wath"],
-    "DZC": ["S. K. Goyal","R. Sharma","P. Saxena","A. Gupta","S. Gulia","C. Sunayana","N. A. Khan","Papiya Mandal"],
-    "EAPID": ["B. P. S. Rao","S. Goel"],
-    "EBGD": ["A. Kaplay","A. Khardenavis","A. Qureshi","B. K. Sarangi","K. Raghunathan","L. Singh","N. A. Dafale","S. Kosankar","S. D. Sontakke","S. T. Thul"],
-    "EISD": ["M. S. Kumar","P. V. Nidhesh","P. K. Naoghare","S. Kagne"],
-    "EMD": ["H. Munawar","P. Nagababu","R.J. Krupadam","S. Kumari","S. Lama","S. Rayalu","S. Shastry"],
-    "ERMD": ["A. Anshul","A. Gupta","K. Amrit","N. K. Labhasetwar","P. Kokate","R. Wathore"],
-    "EVC": ["K. Khairnar"],
-    "HTC": ["A.P. Bafane","Atul Katarkar","K. Kannan","S. Saravanadevi"],
-    "HZC": ["S. Balaji","S. R. Sanam","M. Kalita","P. R. Meganathan","S. Basha","T.V.B.P.S. RamaKrishna"],
-    "KZC": ["A. Middey","D. D. Majumdar","D. Majumdar","K. N. Ranjan","R. Jain","S. Pramanik"],
-    "MZC": ["A. Soni","N. Goyal","S. Kamble","S. A. Tondon"],
-    "SEAF": ["G. S. Kanade","S. M. Kashyap","S. K. Singh","K. Gandhi"],
-    "SS": ["R. Dhodapkar"],
-    "TSDD": ["H. V. Singh","M. Karthik","V. W. Lande"],
-    "WRD": ["B.R. Yadav","S. Kumar","S.A. Bhat"],
-    "WTMD": ["A. Maldhure","G. K. Khadse","G. R. Pophali","L. Deshpande","P. Labhasetwar","P. R. Pujari","R. Ram","S. Dhyani"],
-    "WWT": ["A. Bisarya","P. Manekar","P. P. Manekar","R. Vijay","R. B. Mondal","S. Bhuvanesh","S. Pal"],
-   
-    
-    // Define names for each department
-};
+      for (const institute in jsonData) {
+        const option = document.createElement('option');
+        option.value = institute;
+        option.text = institute.replace(/_/g, ' ');
+        instituteSelect.appendChild(option);
+      }
 
-function loadDepartments() {
-    const selectedInstitute = document.getElementById("institute").value;
-    const departmentDropdown = document.getElementById("department");
-
-    departmentDropdown.innerHTML = "<option value=''>Select a Department</option>";
-
-    if (selectedInstitute !== "") {
-        for (const department of departments[selectedInstitute]) {
-            const option = document.createElement("option");
-            option.value = department;
-            option.text = department;
-            departmentDropdown.appendChild(option);
+      function populateDepartments() {
+        departmentSelect.innerHTML = '';
+        employeeSelect.innerHTML = '';
+        const selectedInstitute = instituteSelect.value;
+        const departments = jsonData[selectedInstitute].Departments;
+        for (const department in departments) {
+          const option = document.createElement('option');
+          option.value = department;
+          option.text = department;
+          departmentSelect.appendChild(option);
         }
+      }
+
+      function populateEmployees() {
+        employeeSelect.innerHTML = '';
+        const selectedInstitute = instituteSelect.value;
+        const selectedDepartment = departmentSelect.value;
+        const employees = jsonData[selectedInstitute].Departments[selectedDepartment].Employees;
+        employees.forEach(employee => {
+          const option = document.createElement('option');
+          option.value = employee;
+          option.text = employee;
+          employeeSelect.appendChild(option);
+        });
+      }
+
+      instituteSelect.addEventListener('change', populateDepartments);
+      departmentSelect.addEventListener('change', populateEmployees);
+    })
+    .catch(error => console.error('Error fetching JSON:', error));
+}
+
+fetchAndPopulateSelects();
+
+
+function validateForm() {
+  let isValid = true;
+
+  // Reset previous error messages
+  document.querySelectorAll('.error-message').forEach(element => {
+      element.innerText = '';
+  });
+
+  // Validate each field
+  const fieldsToValidate = ['institute', 'department', 'title', 'name', 'designation', 'qualification', 'Email'];
+
+  fieldsToValidate.forEach(field => {
+      const value = document.getElementById(field).value;
+      if (!value) {
+          const errorMessageElement = document.getElementById(`${field}Error`);
+          errorMessageElement.innerText = 'This field is required.';
+          isValid = false;
+      }
+  });
+
+  if (isValid) {
+      // If all fields are filled, show the other portion of the form
+      document.getElementById("additionalInfo").style.display = "block";
+      document.getElementById("confirmButton").disabled = true; 
+      document.getElementById("resetButton").disabled = true;
+  }
+
+  return isValid;
+}
+
+function resetForm() {
+  const fieldsToReset = ['institute', 'department', 'title', 'name', 'designation', 'qualification', 'specialization', 'Email'];
+  fieldsToReset.forEach(fieldName => {
+    document.getElementById(fieldName).value = '';
+  })
+  // Reset other form fields and error messages if needed
+}
+
+function expertisevalidate() {
+  const expertiseFields = Array.from({ length: 7 }, (_, i) => document.getElementById(`expertise${i + 1}`));
+  let filledFields = 0;
+
+  expertiseFields.forEach(field => {
+    if (field && field.value.trim() !== '') {
+      filledFields++;
+      field.style.color = ''; // Reset text color for filled fields
+    } else if (field) {
+      field.style.color = 'red'; // Change the text color of empty fields to red
     }
-}
+  });
 
-function loadNames() {
-    const selectedDepartment = document.getElementById("department").value;
-    const nameDropdown = document.getElementById("name");
-
-    nameDropdown.innerHTML = "<option value=''>Select a Name</option>";
-
-    if (selectedDepartment !== "") {
-        for (const name of names[selectedDepartment]) {
-            const option = document.createElement("option");
-            option.value = name;
-            option.text = name;
-            nameDropdown.appendChild(option);
-        }
-    }
-}
-
-function previewForm() {
-    // Get form values
-    var institute = document.getElementById("institute").value;
-    var department = document.getElementById("department").value;
-    var title = document.getElementById("title").value;
-    var name = document.getElementById("name").value;
-    var designation = document.getElementById("designation").value;
-    var qualification = document.getElementById("qualification").value;
-    var phone = document.getElementsByName('Phone')[0].value;
-    var email = document.getElementsByName('Email')[0].value;
-    var Expertise_1 = document.getElementById("expertise1").value;
-    var Number_of_Projects_1 = document.getElementById("NumberofProjects1").value;
-    var Number_of_Publications_1 = document.getElementById("NumberofPublications1").value;
-    var Expertise_2 = document.getElementById("expertise2").value;
-    var Number_of_Projects_2 = document.getElementById("NumberofProjects2").value;
-    var Number_of_Publications_2 = document.getElementById("NumberofPublications2").value;
-    var Expertise_3 = document.getElementById("expertise3").value;
-    var Number_of_Projects_3 = document.getElementById("NumberofProjects3").value;
-    var Number_of_Publications_3 = document.getElementById("NumberofPublications3").value;
-    var Expertise_4 = document.getElementById("expertise4").value;
-    var Number_of_Projects_4 = document.getElementById("NumberofProjects4").value;
-    var Number_of_Publications_4 = document.getElementById("NumberofPublications4").value;
-    var Expertise_5 = document.getElementById("expertise5").value;
-    var Number_of_Projects_5 = document.getElementById("NumberofProjects5").value;
-    var Number_of_Publications_5 = document.getElementById("NumberofPublications5").value;
-    var Expertise_6 = document.getElementById("expertise6").value;
-    var Number_of_Projects_6 = document.getElementById("NumberofProjects6").value;
-    var Number_of_Publications_6 = document.getElementById("NumberofPublications6").value;
-    var Expertise_7 = document.getElementById("expertise7").value;
-    var Number_of_Projects_7 = document.getElementById("NumberofProjects7").value;
-    var Number_of_Publications_7 = document.getElementById("NumberofPublications7").value;
-    // Display preview
-    var previewDiv = document.getElementById("previewData");
-    previewDiv.innerHTML = "<p><strong>Institute:</strong> " + institute + "</p>" +
-                           "<p><strong>Department:</strong> " + department + "</p>" +
-                           "<p><strong>Title:</strong> " + title + "</p>" +
-                           "<p><strong>Name:</strong> " + name + "</p>" +
-                           "<p><strong>Designation:</strong> " + designation + "</p>" +
-                           "<p><strong>Qualification:</strong> " + qualification + "</p>" +
-                           "<p><strong>Phone:</strong> " + phone + "</p>" +
-                           "<p><strong>Email:</strong> " + email + "</p>" +
-                           "<p><strong>Expertise 1:</strong>" + Expertise_1 + "</p>" + "<p><strong>Number of projects 1:</strong>" + Number_of_Projects_1 + "</p>" + "<p><strong>Number of Publications 1:</strong>" + Number_of_Publications_1 + "</p>" +
-                           "<p><strong>Expertise 2:</strong>" + Expertise_2 + "</p>" + "<p><strong>Number of projects 2:</strong>" + Number_of_Projects_2 + "</p>" + "<p><strong>Number of Publications 2:</strong>" + Number_of_Publications_2 + "</p>" +
-                           "<p><strong>Expertise 3:</strong>" + Expertise_3 + "</p>" + "<p><strong>Number of projects 3:</strong>" + Number_of_Projects_3 + "</p>" + "<p><strong>Number of Publications 3:</strong>" + Number_of_Publications_3 + "</p>" +
-                           "<p><strong>Expertise 4:</strong>" + Expertise_4 + "</p>" + "<p><strong>Number of projects 4:</strong>" + Number_of_Projects_4 + "</p>" + "<p><strong>Number of Publications 4:</strong>" + Number_of_Publications_4 + "</p>" +
-                           "<p><strong>Expertise 5:</strong>" + Expertise_5 + "</p>" + "<p><strong>Number of projects 5:</strong>" + Number_of_Projects_5 + "</p>" + "<p><strong>Number of Publications 5:</strong>" + Number_of_Publications_5 + "</p>" +
-                           "<p><strong>Expertise 6:</strong>" + Expertise_6 + "</p>" + "<p><strong>Number of projects 6:</strong>" + Number_of_Projects_6 + "</p>" + "<p><strong>Number of Publications 6:</strong>" + Number_of_Publications_6 + "</p>" +
-                           "<p><strong>Expertise 7:</strong>" + Expertise_7 + "</p>" + "<p><strong>Number of projects 7:</strong>" + Number_of_Projects_7 + "</p>" + "<p><strong>Number of Publications 7:</strong>" + Number_of_Publications_7 + "</p>" ;
-
-    // Show the preview modal
-    $('#previewModal').modal('show');
-}
-function closePreview() {
-    // Hide the preview modal
-    var modal = document.getElementById("previewModal");
-    modal.style.display = "none";
+  if (filledFields < 5) {
+    alert('Please select at least 5 expertise fields.');
+    return false;
+  } else {
+    previewForm();
+  }
 }
 
 
 
-// function submitForm() {
-//     // Here, you can perform any additional actions you need before submitting the form.
-//     console.log("Form submitted");
-//     // You can add code to submit the form data to your server here.
+// Dual list boxes
+const selectedSubfields = new Set();
 
-//     // Display an alert (you can replace this with a more user-friendly message)
-//     alert("Form submitted successfully");
+async function fetchExpertiseData() {
+  try {
+    const response = await fetch('expertise.json');
+    const data = await response.json();
+    return data.expertise;
+  } catch (error) {
+    console.error('Error fetching expertise data:', error);
+    return [];
+  }
+}
 
-//     // Close the preview modal
-//     $('#previewModal').modal('hide');
-    
-//     location.reload();
-//     // Prevent the form from actually submitting to a server
-//     return false;
-// }
+async function populateAvailableExpertise() {
+  const availableExpertise = $('#availableExpertise');
+  const expertiseData = await fetchExpertiseData();
 
+  for (let i = 0; i < expertiseData.length; i++) {
+    const expertise = expertiseData[i];
+    const optgroup = $('<optgroup>').attr('label', expertise.name);
 
-
-$(document).ready(function () {
-    // Define an array to store selected sub-options
-    const selectedSubOptions = [];
-
-    // Store original sub-options HTML for reset
-    const originalSubOptionsHTML = $('.sub-options').html();
-
-    // Add click event to options to show sub-options
-    $('.option').on('click', function () {
-        $(this).find('.sub-options').toggle();
+    expertise.subOptions.forEach(subOption => {
+      const option = $('<option>').val(subOption).text(subOption);
+      optgroup.append(option);
     });
 
-    // Add click event to sub-options to move them to selected options
-    $('.sub-option').on('click', function (e) {
-    e.preventDefault();
-    const selectedSubOption = $(this).clone();
-    $(this).remove();
-    $('#selectedOptions').append(selectedSubOption);
-    // Add the selected sub-option to the array
-    selectedSubOptions.push(selectedSubOption.text());
-    // Update the expertise input fields
-    updateExpertiseFields();
+    availableExpertise.append(optgroup);
+  }
+}
+
+function addSelectedExpertise() {
+  $('#availableExpertise').on('change', function () {
+    if (selectedSubfields.size >= 10) {
+      alert('You can only select up to 10 expertise fields.');
+      return;
+    }
+
+    const selectedOption = $(this).find(':selected');
+    const subfield = selectedOption.val();
+
+    if (selectedSubfields.has(subfield)) {
+      alert(`Subfield '${subfield}' is already selected.`);
+      return;
+    }
+
+    const expertise = selectedOption.parent('optgroup').attr('label');
+    selectedSubfields.add(subfield);
+    const expertiseBox = $('<div>').addClass('alert alert-info mb-2').text(`${expertise} - ${subfield}`);
+    $('#selectedExpertiseBox').append(expertiseBox);
+
+    console.log('Selected Expertise:', expertise, 'Subfield:', subfield);
+  });
+}
+function expertiseSelectedValidate() {
+  const selectedExpertiseCount = selectedSubfields.size;
+
+  if (selectedExpertiseCount < 5) {
+    document.getElementById('selectedExpertiseBox').style.color = 'red'; // Set red text for the expertise box
+    alert('Please select at least 5 expertise fields.');
+    return false;
+  } else {
+    previewAllFields();
+    
+    
+  }
+}
+
+function resetSelection() {
+  selectedSubfields.clear(); // Clear the selected subfields set
+  $('#selectedExpertiseBox').empty(); // Clear the selected expertise box
+}
+
+function updateTable() {
+  const selectedExpertiseBox = document.getElementById('selectedExpertiseBox');
+  const tableBody = document.querySelector('#expertiseTable tbody');
+  tableBody.innerHTML = ''; // Clear the table before populating
+
+  let expertiseCounter = 1;
+
+  selectedExpertiseBox.childNodes.forEach(selected => {
+    const expertiseInfo = selected.textContent.split(' -');
+    const expertiseName = expertiseInfo[0];
+    const subfield = expertiseInfo[1];
+
+    const newRow = document.createElement('tr');
+
+    const expertiseNameCell = document.createElement('td');
+    expertiseNameCell.textContent = expertiseName;
+    expertiseNameCell.setAttribute('name', expertiseName);
+    newRow.appendChild(expertiseNameCell);
+
+    const subfieldCell = document.createElement('td');
+    subfieldCell.textContent = subfield;
+    subfieldCell.setAttribute('name', subfield);
+    newRow.appendChild(subfieldCell);
+
+    const inputNames = ['Projects', 'Publications', 'Patents', 'Awards'];
+    inputNames.forEach(inputName => {
+      const input = document.createElement('input');
+      input.setAttribute('type', 'number');
+      input.setAttribute('name', `${inputName}${expertiseCounter}`);
+      input.setAttribute('placeholder', `${inputName} for ${expertiseName}`);
+      input.classList.add('form-control');
+      input.addEventListener('input', function() {
+        if (this.value < 0) { // Check if the value is less than 0
+          this.value = ''; // Clear the field if it's negative
+        }
+      });
+
+      const cell = document.createElement('td');
+      cell.appendChild(input);
+      newRow.appendChild(cell);
+    });
+
+    expertiseCounter++;
+    tableBody.appendChild(newRow);
+  });
+}
+
+
+// Event listener for the "Confirm Expertise" button
+$('#confirmExpertiseButton').on('click', function (event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+  updateTable();
 });
 
-    // Add click event to reset button to move selected sub-options back to available options
-    $('#resetButton').on('click', function () {
-        $('#selectedOptions .sub-option').each(function () {
-            const availableSubOption = $(this).clone();
-            $(this).remove();
-            const parentOption = $(this).closest('.option');
-            parentOption.find('.sub-options').append(availableSubOption);
-            // Remove the selected sub-option from the array
-            const subOptionText = availableSubOption.text();
-            const index = selectedSubOptions.indexOf(subOptionText);
-            if (index > -1) {
-                selectedSubOptions.splice(index, 1);
-            }
-        });
+populateAvailableExpertise(); // Call your function to populate available expertise
+addSelectedExpertise(); // Call your function to add selected expertise
 
-        // Restore original sub-options HTML
-        $('.sub-options').html(originalSubOptionsHTML);
+// Function to get selected expertise and subfields for the preview
+function getSelectedExpertiseRows() {
+  const tableBody = document.querySelector('#expertiseTable tbody');
+  let rowsHTML = '';
 
-        // Reattach click event to sub-options
-        $('.sub-option').on('click', function (e) {
-            e.preventDefault();
-            const selectedSubOption = $(this).clone();
-            $(this).remove();
-            $('#selectedOptions').append(selectedSubOption);
-            // Add the selected sub-option to the array
-            selectedSubOptions.push(selectedSubOption.text());
-            // Update the expertise input fields
-            updateExpertiseFields();
-        });
-    });
+  const rows = tableBody.querySelectorAll('tr');
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td');
 
-    // Add click event to submit button
-    $('#submitButton').on('click', function (e) {
-        e.preventDefault();
-        console.log('Selected Sub-Options:');
-        console.log(selectedSubOptions);
+    // Get expertiseName and subfield from the 'data-' attributes
+    const expertiseName = cells[0].querySelector('input').value;;
+    const subfield = cells[1].querySelector('input').value;;
 
-        // Update the expertise input fields
-        updateExpertiseFields();
-    });
+    // Retrieve values of projects, publications, patents, and awards from input fields
+    const projects = cells[2].querySelector('input').value;
+    const publications = cells[3].querySelector('input').value;
+    const patents = cells[4].querySelector('input').value;
+    const awards = cells[5].querySelector('input').value;
 
-    // Function to update the expertise input fields
-    function updateExpertiseFields() {
-    // Get the first 7 selected sub-options or fewer if there are not enough
-    const expertiseFields = selectedSubOptions.slice(0, 7);
+    // Construct HTML rows with the collected data
+    rowsHTML += `
+      <tr>
+        <td>${expertiseName}</td>
+        <td>${subfield}</td>
+        <td>${projects}</td>
+        <td>${publications}</td>
+        <td>${patents}</td>
+        <td>${awards}</td>
+      </tr>
+    `;
+  });
 
-    // Update the input fields
-    for (let i = 0; i < expertiseFields.length; i++) {
-        $(`#expertise${i + 1}`).val(expertiseFields[i]);
-    }
+  // The 'rowsHTML' variable contains the constructed HTML rows
+  console.log(rowsHTML); // This might be used for further processing or rendering
 }
 
-});
+
+// Rest of your code remains unchanged...
+
+function previewAllFields() {
+  // Get values from form fields
+  const institute = $('#institute').val();
+  const department = $('#department').val();
+  const title = $('#title').val();
+  const name = $('#name').val();
+  const designation = $('#designation').val();
+  const qualification = $('#qualification').val();
+  const specialization = $('#specialization').val();
+  const email = $('#Email').val();
+
+  // Create a preview HTML
+  const previewHTML = `
+    <p><strong>Institute:</strong> ${institute}</p>
+    <p><strong>Department:</strong> ${department}</p>
+    <p><strong>Title:</strong> ${title}</p>
+    <p><strong>Name:</strong> ${name}</p>
+    <p><strong>Designation:</strong> ${designation}</p>
+    <p><strong>Qualification:</strong> ${qualification}</p>
+    <p><strong>Specialization:</strong> ${specialization}</p>
+    <p><strong>Email:</strong> ${email}</p>
+
+    <h2>Selected Expertise:</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Expertise Name</th>
+          <th>Subfield</th>
+          <th>Number of Projects</th>
+          <th>Number of Publications</th>
+          <th>Number of Patents</th>
+          <th>Number of Awards</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${getSelectedExpertiseRows()}
+      </tbody>
+    </table>
+  `;
+
+  // Display the preview in a modal
+  const previewData = $('#previewData');
+  previewData.html(previewHTML);
+  $('#previewModal').modal('show');
+}
+
+// Function to get selected expertise and subfields for the preview
+function getSelectedExpertiseRows() {
+  const tableRows = document.querySelectorAll('#expertiseTable tbody tr');
+  let rowsHTML = '';
+
+  tableRows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+
+    const expertiseName = cells[0].getAttribute('name');
+    const subfield = cells[1].getAttribute('name');
+    const projects = cells[2].querySelector('input').value;
+    const publications = cells[3].querySelector('input').value;
+    const patents = cells[4].querySelector('input').value;
+    const awards = cells[5].querySelector('input').value;
+
+    rowsHTML += `
+      <tr>
+        <td>${expertiseName}</td>
+        <td>${subfield}</td>
+        <td>${projects}</td>
+        <td>${publications}</td>
+        <td>${patents}</td>
+        <td>${awards}</td>
+      </tr>
+    `;
+  });
+
+  return rowsHTML;
+}
+
 
 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbyAmw1mMaDkzQyFLvL-SH-jxjOmHyHuQvy04vEtdnAWVlXPuKSsLyhkZUjMGlhC5s-ITQ/exec';
 const form = document.forms['google-sheet'];
 
-form.addEventListener('submit', e => {
-    e.preventDefault();
+const hasSubmitted = localStorage.getItem('formSubmitted');
 
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response if needed (e.g., display a thank you message)
-            console.log(data);
-            // alert("Thanks for your response....!!");
+// if (hasSubmitted) {
+//     // Redirect to the end page if the form has already been submitted
+//     window.location.href = 'endpage.html';
+// } else {
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const submitButton = document.querySelector('input[type="submit"]');
+        submitButton.disabled = true
+        // Collect form data before sending
+        const formData = new FormData(form);
 
-            console.log("Form submitted");
-    // You can add code to submit the form data to your server here.
+        // Get the selected expertise and subfield directly from the form fields
+        const expertiseRows = document.querySelectorAll('#expertiseTable tbody tr');
+        
+        expertiseRows.forEach((row, index) => {
+            const expertiseName = row.querySelector(`input[name='Projects${index + 1}']`).getAttribute('placeholder').replace('Projects for ', '');
+            const subfield = row.querySelector('td:nth-child(2)').getAttribute('name');
+            const projects = row.querySelector(`input[name='Projects${index + 1}']`).value;
+            const publications = row.querySelector(`input[name='Publications${index + 1}']`).value;
+            const patents = row.querySelector(`input[name='Patents${index + 1}']`).value;
+            const awards = row.querySelector(`input[name='Awards${index + 1}']`).value;
 
-    // Display an alert (you can replace this with a more user-friendly message)
-            alert("Your Response Recorded successfully....!!");
+            formData.append(`Expertise${index + 1}`, expertiseName);
+            formData.append(`Subfield${index + 1}`, subfield);
+            formData.append(`Project${index + 1}`, projects);
+            formData.append(`Publications${index + 1}`, publications);
+            formData.append(`Patents${index + 1}`, patents);
+            formData.append(`Awards${index + 1}`, awards);
+        });
 
-    // Close the preview modal
-            $('#previewModal').modal('hide');
-    
-            location.reload();
-    // Prevent the form from actually submitting to a server
-            return false;
-            // Redirect to the next page (replace 'next-page.html' with your actual next page URL)
-            // window.location.href = 'expertise.html';
-        })
-        .catch(error => console.error('Error!', error.message));
-});
+        // // Log the form data to the console
+        // for (let pair of formData.entries()) {
+        //     console.log(pair[0] + ': ' + pair[1]);
+        // }
 
-{}
-//     console.log("Form submitted");
-//     // You can add code to submit the form data to your server here.
-
-//     // Display an alert (you can replace this with a more user-friendly message)
-//     alert("Form submitted successfully");
-
-//     // Close the preview modal
-//     $('#previewModal').modal('hide');
-    
-//     location.reload();
-//     // Prevent the form from actually submitting to a server
-//     return false;
+        // Send the form data via fetch
+        fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('formSubmitted', 'true');
+                window.location.href = 'endpage.html';
+                alert('Your response has been recorded successfully!');
+            })
+            .catch(error => console.error('Error!', error.message));
+    });
 // }
+
+
 
