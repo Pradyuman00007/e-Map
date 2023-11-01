@@ -417,4 +417,14 @@ const hasSubmitted = localStorage.getItem('formSubmitted');
 // }
 
 
+// ----------------------------------------------------------------------
 
+console.log("New Layout")
+// $("#institute [value='National_Environmental_Engineering_Research_Institute_NEERI_Nagpur']").change(); 
+$("#institute")
+$("#department")
+$("#title")
+$("#name")
+$("#designation")
+$("#qualification")
+$("#Email")
