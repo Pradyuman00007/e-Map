@@ -308,7 +308,7 @@ function previewAllFields() {
     <p><strong>Specialization:</strong> ${specialization}</p>
     <p><strong>Email:</strong> ${email}</p>
 
-    <h2>Selected Expertise:</h2>
+    <h4>Selected Expertise:</h4>
     <table class="table">
       <thead>
         <tr>
