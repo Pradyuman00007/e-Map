@@ -1,0 +1,79 @@
+{
+    "National_Environmental_Engineering_Research_Institute_NEERI_Nagpur": {
+      "Departments": {
+        "APC": {
+          "Employees": ["A. Lalwani","A. D. Bhanarkar","K. V. George","N. Mandal","R. V. Vyawahare","V. Khaparde"]
+        },
+        "BDPMD": {
+          "Employees": ["A. K. Bansiwal","P. R. Salve","S. Dabe"]
+        },
+        "CHWMD": {
+          "Employees": ["A. N. Vaidya","G. R. Kale","J. Joseph","M. P. Patil","S. Y. Bodkhe","A. R. Kumar"]
+        },
+        "CTMD": {
+          "Employees": ["A. Sargaonkar","A. Sharma","H. Bherwani","P. J. Prasad","P. S. Kumar","R. Biniwale","R. Kadaverugu","Y. Pakade"]
+        },
+        "CZC": {
+          "Employees": ["M. T. Arasu","R. Sivacoumar"]
+        },
+        "DRC": {
+          "Employees": ["S. Wath"]
+        },
+        "DZC": {
+          "Employees": ["S. K. Goyal","R. Sharma","P. Saxena","A. Gupta","S. Gulia","C. Sunayana","N. A. Khan","Papiya Mandal"]
+        },
+        "EAPID": {
+          "Employees": ["B. P. S. Rao","S. Goel"]
+        },
+        "EBGD": {
+          "Employees": ["A. Kaplay","A. Khardenavis","A. Qureshi","B. K. Sarangi","K. Raghunathan","L. Singh","N. A. Dafale","S. Kosankar","S. D. Sontakke","S. T. Thul"]
+        },
+        "EISD": {
+          "Employees": ["M. S. Kumar","P. V. Nidhesh","P. K. Naoghare","S. Kagne"]
+        },
+        "EMD": {
+          "Employees": ["H. Munawar","P. Nagababu","R.J. Krupadam","S. Kumari","S. Lama","S. Rayalu","S. Shastry"]
+        },
+        "ERMD": {
+          "Employees": ["A. Anshul","A. Gupta","K. Amrit","N. K. Labhasetwar","P. Kokate","R. Wathore"]
+        },
+        "EVC": {
+          "Employees": ["K. Khairnar"]
+        },
+        "HTC": {
+          "Employees": ["A.P. Bafane","Atul Katarkar","K. Kannan","S. Saravanadevi"]
+        },
+        "HZC": {
+          "Employees": ["S. Balaji","S. R. Sanam","M. Kalita","P. R. Meganathan","S. Basha","T.V.B.P.S. RamaKrishna"]
+        },
+        "KZC": {
+          "Employees": ["A. Middey","D. D. Majumdar","D. Majumdar","K. N. Ranjan","R. Jain","S. Pramanik"]
+        },
+        "MZC": {
+          "Employees": ["A. Soni","N. Goyal","S. Kamble","S. A. Tondon"]
+        },
+        "SEAF": {
+          "Employees": ["G. S. Kanade","S. M. Kashyap","S. K. Singh","K. Gandhi"]
+        },
+        "SS": {
+          "Employees": ["R. Dhodapkar"]
+        },
+        "TSDD": {
+          "Employees": ["H. V. Singh","M. Karthik","V. W. Lande"]
+        },
+        "WRD": {
+          "Employees": ["B.R. Yadav","S. Kumar","S.A. Bhat"]
+        },
+        "WTMD": {
+          "Employees": ["A. Maldhure","G. K. Khadse","G. R. Pophali","L. Deshpande","P. Labhasetwar","P. R. Pujari","R. Ram","S. Dhyani"]
+        },
+        "WWT": {
+          "Employees": ["A. Bisarya","P. Manekar","P. P. Manekar","R. Vijay","R. B. Mondal","S. Bhuvanesh","S. Pal"]
+        }
+      }
+    }
+    
+}
+  
+    
+  
