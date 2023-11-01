@@ -1,681 +1,327 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form with Preview and Submission</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Expertise Selection</title>
+    <!-- Include Bootstrap CSS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-o3z4z4F5I0SqtGT5P8Fk5uVfRs5CB3GN4uYLtDY4HTt6I+ol/7ks9m5d04F4zLr5J" crossorigin="anonymous"></script>
-
-    <style>
-        /* Style for the attractive heading */
-        .attractive-heading {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-            font-size: 23px;
-            white-space: 3px;
-            text-align: center;
-            margin: 0px 10px 100px 0px;
-            
-        }
-
-        Additional styles for the dual listbox
-        .dual-listbox-container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .dual-listbox-column {
-            flex: 0 0 48%;
-        }
-
-        .option-box,
-        .selected-options-box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            max-height: 400px;
-            overflow-y: auto;
-            width: 100%;
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        /* Custom modal size */
-        .custom-modal-size .modal-dialog {
-            max-width: 800px; /* Adjust the width as needed */
-        }
-
-        
-    </style>
-<link rel="stylesheet" href="ext.css">
+    <!-- <link rel="stylesheet" href="ext.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="table vie.css">
+<!-- <link rel="stylesheet" href="ext.css"> -->
 </head>
+
+
 <body>
+
     <header>
         <span>
-            <div class="top-left-image">
-                <img src="logo.png" alt="Logo"/>
+            <div>
+                <img src="G:\Form\Form\Logo\logo.png" class="top-left-image" alt="Logo" />
             </div>
             <div>
                 <h1>CSIR-NATIONAL ENVIRONMENTAL ENGINEERING RESEARCH INSTITUTE Nehru Marg, Nagpur 440 020.</h1>
             </div>
-            <div class="top-right-image">
-                <img src="neerilogo.png" alt="Logo"/>
+            <div >
+                <img src="G:\Form\Form\Logo\neerilogo.png" class="top-right-image" alt="Logo" />
             </div>
         </span>
     </header>
-    
-    <div class="container container1">
-        <h2 class="attractive-heading ">Framework for mapping employee's core expertise and specialization with existing and future R&D prospects of the institution (e-Map) (MLP - 210)</h2>
-        <!-- <div class="col-md-6 col-md-6" > -->
-                <form method="post" autocomplete="off" name="google-sheet" onsubmit="return submitForm();">
-                <!-- <h3>Personal Information</h3> -->
-                <div class="row mb-3">
-                    <label for="institute" class="col-sm-2 col-form-label">Institute</label>
-                    <div class="col-sm-10">
-                    <select id="institute" class="form-select" name="Institute" onchange="loadDepartments()">
-                        <option value="">Select your Institute...</option>
-                        <option value="Council of Scientific & Industrial Research">Council of Scientific & Industrial Research</option>
-                        <option value="Central Building Research Institute (CBRI), Roorkee">Central Building Research Institute (CBRI), Roorkee</option>
-                        <option value="Centre for Cellular & Molecular Biology (CCMB), Hyderabad">Centre for Cellular & Molecular Biology (CCMB), Hyderabad</option>
-                        <option value="Central Dug Research Institute (CDRI), Lucknow">Central Dug Research Institute (CDRI), Lucknow</option>
-                        <option value="Central Electrochemical Research Institute (CECRI), Karaikudi">Central Electrochemical Research Institute (CECRI), Karaikudi</option>
-                        <option value="Central Electronics Engineering Research Institute (CEERI) Pilani">Central Electronics Engineering Research Institute (CEERI) Pilani</option>
-                        <option value="Central Institute of Mining and Fuel Research, Dhanbad">Central Institute of Mining and Fuel Research, Dhanbad</option>
-                        <option value="Central Food Technological Research Institute (CFTRI), Mysore">Central Food Technological Research Institute (CFTRI), Mysore</option>
-                        <option value="Central Glass & Ceramic Research Institute (CGCRI), Kolkata">Central Glass & Ceramic Research Institute (CGCRI), Kolkata</option>
-                        <option value="Central Institute of Medicinal & Aromatic Plants (CIMAP), Lucknow">Central Institute of Medicinal & Aromatic Plants (CIMAP), Lucknow</option>
-                        <option value="Central Mechanical Engineering Research Institute (CMERI), Durgapur">Central Mechanical Engineering Research Institute (CMERI), Durgapur</option>
-                        <option value="CSIR-Fourth Paradigm Institute, Bengaluru">CSIR-Fourth Paradigm Institute, Bengaluru</option>
-                        <option value="Central Road Research Institute (CRRI), New Delhi">Central Road Research Institute (CRRI), New Delhi</option>
-                        <option value="Central Scientific Instruments Organisation CSIO, Chandigarh">Central Scientific Instruments Organisation CSIO, Chandigarh</option>
-                        <option value="Central Salt & Marine Chemicals Research Institute (CS&MCRI), Bhavnagar">Central Salt & Marine Chemicals Research Institute (CS&MCRI), Bhavnagar</option>
-                        <option value="Institute of Genomics & Integrative Biology (IGIB), New Delhi">Institute of Genomics & Integrative Biology (IGIB), New Delhi</option>
-                        <option value="Institute of Himalayan Bioresource Technology (IHBT), Palampur">Institute of Himalayan Bioresource Technology (IHBT), Palampur</option>
-                        <option value="Indian Institute of Chemical Biology (IICB), Kolkata">Indian Institute of Chemical Biology (IICB), Kolkata</option>
-                        <option value="Indian Institute of Chemical Technology (IICT), Hyderabad">Indian Institute of Chemical Technology (IICT), Hyderabad</option>
-                        <option value="Indian Institute of Petroleum (IIP), Dehradun">Indian Institute of Petroleum (IIP), Dehradun</option>
-                        <option value="Institute of Microbial Technology (IMT), Chandigarh">Institute of Microbial Technology (IMT), Chandigarh</option>
-                        <option value="Industrial Toxicology Research Centre (ITRC), Lucknow">Industrial Toxicology Research Centre (ITRC), Lucknow</option>
-                        <option value="National Aerospace Laboratories (NAL) Bangalore">National Aerospace Laboratories (NAL) Bangalore</option>
-                        <option value="National Botanical Research Institute (NBRI), Lucknow">National Botanical Research Institute (NBRI), Lucknow</option>
-                        <option value="National Chemical Laboratory (NCL), Pune">National Chemical Laboratory (NCL), Pune</option>
-                        <option value="National_Environmental_Engineering_Research_Institute_NEERI_Nagpur">National Environmental Engineering Research Institute NEERI, Nagpur</option>
-                        <option value="National Geophysical Research Institute (NGRI) Hyderabad">National Geophysical Research Institute (NGRI) Hyderabad</option>
-                        <option value="National Institute of Oceanography (NIO), Goa">National Institute of Oceanography (NIO), Goa</option>
-                        <option value="National Institute of Science Communication and Information Resources (NISCAIR) New Delhi">National Institute of Science Communication and Information Resources (NISCAIR) New Delhi</option>
-                        <option value="National Institute of Science, Technology and Development Studies (NISTADS) New Delhi">National Institute of Science, Technology and Development Studies (NISTADS) New Delhi</option>
-                        <option value="National Metallurgical Laboratory (NML), Jamshedpur">National Metallurgical Laboratory (NML), Jamshedpur</option>
-                        <option value="National Physical Laboratory (NPL), New Delhi">National Physical Laboratory (NPL), New Delhi</option>
-                        <option value="CSIR-Advanced Materials and Processes Research Institute AMPRI, Bhopal">CSIR-Advanced Materials and Processes Research Institute AMPRI, Bhopal</option>
-                        <option value="Institute of Minerals and Materials Technology-IMMT, Bhubaneswar">Institute of Minerals and Materials Technology-IMMT, Bhubaneswar</option>
-                        <option value="Indian Institute of Integrative Medicine (CSIR-IIIM), Jammu">Indian Institute of Integrative Medicine (CSIR-IIIM), Jammu</option>
-                        <option value="North East Institute of Science and Technology, Jorhat CSIR-NEIST">North East Institute of Science and Technology, Jorhat CSIR-NEIST</option>
-                        <option value="CSIR - National Institute for Interdisciplinary Science and Technology (NIIST), Thiruvananthapuram">CSIR - National Institute for Interdisciplinary Science and Technology (NIIST), Thiruvananthapuram</option>
-                        <option value="Structural Engineering Research Centre (SERC), Chennai">Structural Engineering Research Centre (SERC), Chennai</option>
-                    </select>
-                    </div>
-                </div>
-               
 
+    <div class="container container1">
+        <div class="attractive-heading">Framework for mapping employee's core expertise and specialization with existing
+            and future R&D prospects of the institution (e-Map) (MLP - 210)</div>
+        <!-- <div class="col-md-6 col-md-6" > -->
+        <form method="post" autocomplete="off" name="google-sheet" onsubmit="return validateForm();">
+            <!-- <h3>Personal Information</h3> -->
             <div class="row mb-3">
-                    <label for="department" class="col-sm-2 col-form-label">Department</label>
+                <label for="institute" class="col-sm-2 col-form-label">Institute</label>
                 <div class="col-sm-10">
-                    <select class="form-select" id="department" name="Department" onchange="loadNames()" required="">
-                    <!-- Options for departments here... -->
+                    <select id="institute" class="form-select" name="Institute" onchange="populateDepartments()">
+                        <option value="">Select your Institute...</option>
+                        <option value="Council of Scientific & Industrial Research">Council of Scientific & Industrial
+                            Research</option>
+                        <option value="Central Building Research Institute (CBRI), Roorkee">Central Building Research
+                            Institute (CBRI), Roorkee</option>
+                        <option value="Centre for Cellular & Molecular Biology (CCMB), Hyderabad">Centre for Cellular &
+                            Molecular Biology (CCMB), Hyderabad</option>
+                        <option value="Central Dug Research Institute (CDRI), Lucknow">Central Dug Research Institute
+                            (CDRI), Lucknow</option>
+                        <option value="Central Electrochemical Research Institute (CECRI), Karaikudi">Central
+                            Electrochemical Research Institute (CECRI), Karaikudi</option>
+                        <option value="Central Electronics Engineering Research Institute (CEERI) Pilani">Central
+                            Electronics Engineering Research Institute (CEERI) Pilani</option>
+                        <option value="Central Institute of Mining and Fuel Research, Dhanbad">Central Institute of
+                            Mining and Fuel Research, Dhanbad</option>
+                        <option value="Central Food Technological Research Institute (CFTRI), Mysore">Central Food
+                            Technological Research Institute (CFTRI), Mysore</option>
+                        <option value="Central Glass & Ceramic Research Institute (CGCRI), Kolkata">Central Glass &
+                            Ceramic Research Institute (CGCRI), Kolkata</option>
+                        <option value="Central Institute of Medicinal & Aromatic Plants (CIMAP), Lucknow">Central
+                            Institute of Medicinal & Aromatic Plants (CIMAP), Lucknow</option>
+                        <option value="Central Mechanical Engineering Research Institute (CMERI), Durgapur">Central
+                            Mechanical Engineering Research Institute (CMERI), Durgapur</option>
+                        <option value="CSIR-Fourth Paradigm Institute, Bengaluru">CSIR-Fourth Paradigm Institute,
+                            Bengaluru</option>
+                        <option value="Central Road Research Institute (CRRI), New Delhi">Central Road Research
+                            Institute (CRRI), New Delhi</option>
+                        <option value="Central Scientific Instruments Organisation CSIO, Chandigarh">Central Scientific
+                            Instruments Organisation CSIO, Chandigarh</option>
+                        <option value="Central Salt & Marine Chemicals Research Institute (CS&MCRI), Bhavnagar">Central
+                            Salt & Marine Chemicals Research Institute (CS&MCRI), Bhavnagar</option>
+                        <option value="Institute of Genomics & Integrative Biology (IGIB), New Delhi">Institute of
+                            Genomics & Integrative Biology (IGIB), New Delhi</option>
+                        <option value="Institute of Himalayan Bioresource Technology (IHBT), Palampur">Institute of
+                            Himalayan Bioresource Technology (IHBT), Palampur</option>
+                        <option value="Indian Institute of Chemical Biology (IICB), Kolkata">Indian Institute of
+                            Chemical Biology (IICB), Kolkata</option>
+                        <option value="Indian Institute of Chemical Technology (IICT), Hyderabad">Indian Institute of
+                            Chemical Technology (IICT), Hyderabad</option>
+                        <option value="Indian Institute of Petroleum (IIP), Dehradun">Indian Institute of Petroleum
+                            (IIP), Dehradun</option>
+                        <option value="Institute of Microbial Technology (IMT), Chandigarh">Institute of Microbial
+                            Technology (IMT), Chandigarh</option>
+                        <option value="Industrial Toxicology Research Centre (ITRC), Lucknow">Industrial Toxicology
+                            Research Centre (ITRC), Lucknow</option>
+                        <option value="National Aerospace Laboratories (NAL) Bangalore">National Aerospace Laboratories
+                            (NAL) Bangalore</option>
+                        <option value="National Botanical Research Institute (NBRI), Lucknow">National Botanical
+                            Research Institute (NBRI), Lucknow</option>
+                        <option value="National Chemical Laboratory (NCL), Pune">National Chemical Laboratory (NCL),
+                            Pune</option>
+                        <option value="National_Environmental_Engineering_Research_Institute_NEERI_Nagpur">National
+                            Environmental Engineering Research Institute NEERI, Nagpur</option>
+                        <option value="National Geophysical Research Institute (NGRI) Hyderabad">National Geophysical
+                            Research Institute (NGRI) Hyderabad</option>
+                        <option value="National Institute of Oceanography (NIO), Goa">National Institute of Oceanography
+                            (NIO), Goa</option>
+                        <option
+                            value="National Institute of Science Communication and Information Resources (NISCAIR) New Delhi">
+                            National Institute of Science Communication and Information Resources (NISCAIR) New Delhi
+                        </option>
+                        <option
+                            value="National Institute of Science, Technology and Development Studies (NISTADS) New Delhi">
+                            National Institute of Science, Technology and Development Studies (NISTADS) New Delhi
+                        </option>
+                        <option value="National Metallurgical Laboratory (NML), Jamshedpur">National Metallurgical
+                            Laboratory (NML), Jamshedpur</option>
+                        <option value="National Physical Laboratory (NPL), New Delhi">National Physical Laboratory
+                            (NPL), New Delhi</option>
+                        <option value="CSIR-Advanced Materials and Processes Research Institute AMPRI, Bhopal">
+                            CSIR-Advanced Materials and Processes Research Institute AMPRI, Bhopal</option>
+                        <option value="Institute of Minerals and Materials Technology-IMMT, Bhubaneswar">Institute of
+                            Minerals and Materials Technology-IMMT, Bhubaneswar</option>
+                        <option value="Indian Institute of Integrative Medicine (CSIR-IIIM), Jammu">Indian Institute of
+                            Integrative Medicine (CSIR-IIIM), Jammu</option>
+                        <option value="North East Institute of Science and Technology, Jorhat CSIR-NEIST">North East
+                            Institute of Science and Technology, Jorhat CSIR-NEIST</option>
+                        <option
+                            value="CSIR - National Institute for Interdisciplinary Science and Technology (NIIST), Thiruvananthapuram">
+                            CSIR - National Institute for Interdisciplinary Science and Technology (NIIST),
+                            Thiruvananthapuram</option>
+                        <option value="Structural Engineering Research Centre (SERC), Chennai">Structural Engineering
+                            Research Centre (SERC), Chennai</option>
                     </select>
+                    <div id="instituteError" class="error-message" style="color: red;"></div>
                 </div>
             </div>
-        
+
 
             <div class="row mb-3">
-                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+                <label for="department" class="col-sm-2 col-form-label">Department</label>
+                <div class="col-sm-10">
+                    <select class="form-select" id="department" name="Department" onchange="populateEmployees()">
+                        <option value="">Select your Department...</option>
+                        <!-- Options for departments here... -->
+                    </select>
+                    <div id="departmentError" class="error-message" style="color: red;"></div>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label for="title" class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
                     <select class="form-select" id="title" name="Title">
-                        <option value=""disabled selected>Select your title...</option>
+                        <option value="" disabled selected>Select your title...</option>
                         <option value="Dr">Dr.</option>
                         <option value="Er">Er.</option>
                         <option value="Mr">Mr.</option>
                         <option value="Mrs">Mrs.</option>
                         <option value="Ms">Ms.</option>
                     </select>
-                </div> 
+                    <div id="titleError" class="error-message" style="color: red;"></div>
+                </div>
             </div>
 
             <div class="row mb-3">
                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                <select class="form-select" id="name" name="Name" required="">
-                    <!-- Options for names here... -->
-                </select>
+                    <select class="form-select" id="name" name="Name" required="">
+                        <option value="">Select your name...</option>
+                        <!-- Options for names here... -->
+                    </select>
+                    <div id="nameError" class="error-message" style="color: red;"></div>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="designation" class="col-sm-2 col-form-label">Designation</label>
                 <div class="col-sm-10">
-                <select class="form-select" id="designation" name="Designation">
-                    <option value=""disabled selected>Select your designation..</option>
-                    <option value="chief_scientist&head">Chief Scientist & Head</option>
-                    <option value="chief_scientist">Chief Scientist</option>
-                    <option value="senior_principalscientist&head">Senior Principal Scientist & Head</option>
-                    <option value="senior_principalscientist">Senior Principal Scientist</option>
-                    <option value="principalscientist&head">Principal Scientist & Head</option>
-                    <option value="principal_scientist">Principal Scientist</option>
-                    <option value="seniorscientist">Senior Scientist</option>
-                    <option value="scientist">Scientist</option>
-                </select>
+                    <select class="form-select" id="designation" name="Designation">
+                        <option value="" disabled selected>Select your designation..</option>
+                        <option value="Chief Scientist & Head">Chief Scientist & Head</option>
+                        <option value="Chief Scientist">Chief Scientist</option>
+                        <option value="Senior Principal Scientist & Head">Senior Principal Scientist & Head</option>
+                        <option value="Senior Principal Scientist">Senior Principal Scientist</option>
+                        <option value="Principal Scientist & Head">Principal Scientist & Head</option>
+                        <option value="Principal Scientist">Principal Scientist</option>
+                        <option value="Senior Scientist">Senior Scientist</option>
+                        <option value="Scientist">Scientist</option>
+                    </select>
+                    <div id="designationError" class="error-message" style="color: red;"></div>
                 </div>
-        </div>
-
-        <div class="row mb-3">
-            <label for="qualification" class="col-sm-2 col-form-label">Highest Qualification:</label>
-            <div class="col-sm-10">
-            <select id="qualification" class="form-select" name="Qualification"  >
-                <option value=""disabled selected>Select your highest qualification...</option>
-                <option value="Post doctrate">Post Doc</option>
-                <option value="Ph.D">Ph.D</option>
-                <option value="Master of Science">M.S.</option>
-                <option value="Master of Technology">M.Tech</option>
-                <option value="Master of Engineering">M.E.</option>
-            </select>
             </div>
-        </div>
 
-        <div class="row mb-3">
-                <label for="Phone" class="col-sm-2 col-form-label">Primary number</label>
-            <div class="col-sm-10">
-                <input type="number" id="Phone" class="form-control" name="Phone" placeholder="Your contact number..." value="" required=""/>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-                <label for="Email" class="col-sm-2 col-form-label">E-mail</label>
-            <div class="col-sm-10">
-                <input type="email" id="Email" class="form-control" name="Email" placeholder="Your E-mail Address..." value="" required=""/>
-            </div>
-        </div>
-        
-    </div>
-
-    <div class="container container2">
-        <!-- <h3>Select Expertise</h3> -->
-        <div class="row ">
-            <h4>Please identify your area of expertise and specialization by selecting classifications from the list below.</h4>
-            <div class="col-md-6 col-md-6 ">
-                <h5>Available Options</h5>
-                <div class="option-box" id="availableOptions">
-                    <!-- Available options and sub-options will be populated here -->
-                    <!-- Example option -->
-                    <div class="list-group-item list-group-item-action option">
-                        Air Pollution
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Air Pollution And Its Effects On Human Health</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Air Pollution Control</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Air Pollution Monitoring And Measurement Techniques</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Air Quality Modeling</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Emission Inventory</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Air Quality Monitoring And Analysis</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Indoor Air Quality</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Stack Monitoring</a>
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action option">
-                        Chemsitry
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Organic Chemsitry</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Inorganic Chemsitry</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Physical Chemsitry</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Chemsitry</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Analytical Chemsitry</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Biochemsitry</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Molecular Imprinting Technology</a> 
-                       
-                          
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action option">
-                        Atmospheric Science
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Atmospheric Science And Meteorology</a>
-                            <!-- <a href="#" class="list-group-item list-group-item-action sub-option">Sub-Option 2</a> -->
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action option">
-                        Health and Safety
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Public Health</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Epidemiology and Public Health</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Health Impact Assessment</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Occupational Health</a>
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action option">
-                        Water Management and Quality   
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Conservation</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Distribution Systems</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Treatment Processes</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Management And Conservation</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Pollution Control</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Quality Analysis</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Quality Assessment</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Quality Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Quality Monitoring</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Quality Monitoring And Analysis</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Quality Testing And Analysis</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Resource Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Quality Testing And Analysis</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Resource Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Treatment Technology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Phytorid Technology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Water Safety Plan Development</a>
-                        </div>  
-                    </div>
-                    
-                    <div class="list-group-item list-group-item-action option">
-                        Environmental Management
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Impact Assessment</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Compliance</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Sustainable Development</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Health and Safety</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Management Systems</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Monitoring And Assessment</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Socio-economic Impact Assessment</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Landfill Management</a>
-                        </div>
-                    </div>
-
-                    <div class="list-group-item list-group-item-action option">
-                        Ecology and Conservation
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Ecology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Biodiversity Conservation and Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Wetland Restoration And Conservation</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Conservation Biology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Wildlife Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Marine Biology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">River Ecology</a>
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action option">
-                        Geosciences
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Geology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Geochemistry</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Groundwater Hydrology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Geophysics</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Limnology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Geology And Soil Science</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Geochemistry</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Groundwater Hydrology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Groundwater Modeling</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Groundwater Monitoring</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Hydrogeology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Soil And Land Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Soil Sampling And Analysis</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Soil Science</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Soil Conservation</a>
-                            
-                            
-                        </div>
-                    </div>
-
-
-                    <div class="list-group-item list-group-item-action option">
-                        Chemical Engineering
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Process Engineering</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Catalysis</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Industrial Emissions Control Technologies</a>
-                            
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Industrial Pollution Control</a>
-                        </div>
-                    </div>
-
-
-
-                    <div class="list-group-item list-group-item-action option">
-                        Civil Engineering
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Hydraulic Engineering</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Geotechnical Engineering</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Transportation Engineering</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Urban Planning and Design</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Engineering</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Land Use Planning</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Engineering</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Engineering</a>
-                        </div>
-                    </div>
-
-                    <div class="list-group-item list-group-item-action option">
-                        Materials Science and Engineering
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Materials Science</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Nanotechnology</a>
-                            
-                        </div>
-                    </div>
-                    <div class="list-group-item list-group-item-action option">
-                        Electrical and Mechanical Engineering
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Electrical Engineering</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Mechanical Engineering</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Sensor Technology and Data Collection</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Renewable Energy Technologies</a>
-                         
-                        </div>
-                    </div>
-
-                    <div class="list-group-item list-group-item-action option">
-                        Information Technology and Data Science
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Data Analysis and Interpretation</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Geographic Information Systems And Remote Sensing</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Information Technology And Software Development</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Decision Support Systems</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Internet of Things</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Data Science and Analytics</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Data Analysis and Statistics</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Database Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Sensor Technology And Data Collection</a>
-                        </div>
-                    </div>
-
-                    <div class="list-group-item list-group-item-action option">
-                        Biology
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Botany</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Microbiology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Zoology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Genetics</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Marine Biology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Virology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Microbiology</a>
-                        
-                        </div>
-                    </div>  
-
-                    <div class="list-group-item list-group-item-action option">
-                        Waste Management and Recycling
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Solid Waste Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Hazardous Waste Management</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Waste Reduction and Recycling</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Waste-to-energy Technologies</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Hazardous Materials Handling And Storage</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Waste Characterization And Quantification</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Waste Management And Disposal</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Waste Processing Technology</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Wastewater Treatment</a>
-                        </div>
-                    </div>  
-                    <div class="list-group-item list-group-item-action option">
-                        Mining Engineering
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Mine Closure Planning And Execution</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Mining And Mineral Processing</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Coal Mining And Its Impact On The Environment</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Mining Operations And Processes</a>
-                            
-                        </div>
-                    </div> 
-                    <div class="list-group-item list-group-item-action option">       
-                        Policy and Regulation
-                        <div class="sub-options">
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Policy and Governance</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Policy and Regulatory Compliance</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Social Impact Assessment</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Community Development and Engagement</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Environmental Policy</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Policy And Governance</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Policy And Regulatory Frameworks</a>
-                            <a href="#" class="list-group-item list-group-item-action sub-option">Land Reclamation</a>
-                        </div>
-                    </div>  
-                    <!-- Add more available options as needed -->
+            <div class="row mb-3">
+                <label for="qualification" class="col-sm-2 col-form-label">Highest Qualification:</label>
+                <div class="col-sm-10">
+                    <select id="qualification" class="form-select" name="Qualification">
+                        <option value="" disabled selected>Select your highest qualification...</option>
+                        <option value="Post doctrate">Post Doc</option>
+                        <option value="Ph.D">Ph.D</option>
+                        <option value="Master of Science">M.S.</option>
+                        <option value="Master of Technology">M.Tech</option>
+                        <option value="Master of Engineering">M.E.</option>
+                    </select>
+                    <div id="qualificationError" class="error-message" style="color: red;"></div>
                 </div>
-                </div>
-                <div class="col-md-6 col-md-6">
-                    <h5>Selected Sub-Options</h5>
-                    <div class="selected-options-box" id="selectedOptions">
-                        <!-- Selected sub-options will be displayed here -->
-                    </div>
-                </div>
-            
-
-        <div class="col-sm-12">
-            <div class="selected-expertise center-div ">
-                <h3>Selected Expertise</h3>
-                <div class="row ">
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                                <label for="expertise1" class="col-sm-2 col-form-label">Expertise 1</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="expertise1" name="Expertise 1" class="form-control" placeholder="Expertise 1">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofProjects1" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Projects 1</label>
-                            <div class="col-sm-10 cust ">
-                                <input type="number" id="NumberofProjects1" name="NumberofProjects1" class="form-control" style="margin-left: 120px;" placeholder="No. of Projects..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofPublications1" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Publications 1</label>
-                            <div class="col-sm-10 cust" >
-                                <input type="number" id="NumberofPublications1" name="NumberofPublications1" class="form-control" style="margin-left: 120px;" placeholder="No. of Publications..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                                <label for="expertise2" class="col-sm-2 col-form-label">Expertise 2</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="expertise2" name="Expertise 2" class="form-control" placeholder="Expertise 2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofProjects2" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Projects 2</label>
-                            <div class="col-sm-10 cust ">
-                                <input type="number" id="NumberofProjects2" name="NumberofProjects2" class="form-control" style="margin-left: 120px;" placeholder="No. of Projects..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofPublications2" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Publications 2</label>
-                            <div class="col-sm-10 cust" >
-                                <input type="number" id="NumberofPublications2" name="NumberofPublications2" class="form-control" style="margin-left: 120px;" placeholder="No. of Publications..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                                <label for="expertise3" class="col-sm-2 col-form-label">Expertise 3</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="expertise3" name="Expertise 3" class="form-control" placeholder="Expertise 3">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofProjects3" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Projects 3</label>
-                            <div class="col-sm-10 cust ">
-                                <input type="number" id="NumberofProjects3" name="NumberofProjects3" class="form-control" style="margin-left: 120px;" placeholder="No. of Projects..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofPublications3" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Publications 3</label>
-                            <div class="col-sm-10 cust" >
-                                <input type="number" id="NumberofPublications3" name="NumberofPublications3" class="form-control" style="margin-left: 120px;" placeholder="No. of Publications..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                                <label for="expertise4" class="col-sm-2 col-form-label">Expertise 4</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="expertise4" name="Expertise 4" class="form-control"  placeholder="Expertise 4">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofProjects4" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Projects 4</label>
-                            <div class="col-sm-10 cust ">
-                                <input type="number" id="NumberofProjects4" name="NumberofProjects4" class="form-control" style="margin-left: 120px;" placeholder="No. of Projects..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofPublications4" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Publications 4</label>
-                            <div class="col-sm-10 cust" >
-                                <input type="number" id="NumberofPublications4" name="NumberofPublications4" class="form-control" style="margin-left: 120px;" placeholder="No. of Publications..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                                <label for="expertise5" class="col-sm-2 col-form-label">Expertise 5</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="expertise5" name="Expertise 5" class="form-control" placeholder="Expertise 5">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofProjects5" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Projects 5</label>
-                            <div class="col-sm-10 cust ">
-                                <input type="number" id="NumberofProjects5" name="NumberofProjects5" class="form-control" style="margin-left: 120px;" placeholder="No. of Projects..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofPublications5" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Publications 5</label>
-                            <div class="col-sm-10 cust" >
-                                <input type="number" id="NumberofPublications5" name="NumberofPublications5" class="form-control" style="margin-left: 120px;" placeholder="No. of Publications..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                                <label for="expertise6" class="col-sm-2 col-form-label">Expertise 6</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="expertise6" name="Expertise 6" class="form-control" placeholder="Expertise 6">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofProjects6" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Projects 6</label>
-                            <div class="col-sm-10 cust ">
-                                <input type="number" id="NumberofProjects6" name="NumberofProjects6" class="form-control" style="margin-left: 120px;" placeholder="No. of Projects..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofPublications6" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Publications 6</label>
-                            <div class="col-sm-10 cust" >
-                                <input type="number" id="NumberofPublications6" name="NumberofPublications6" class="form-control" style="margin-left: 120px;" placeholder="No. of Publications..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                                <label for="expertise7" class="col-sm-2 col-form-label">Expertise 7</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="expertise7" name="Expertise 7" class="form-control" placeholder="Expertise 7">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofProjects7" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Projects 7</label>
-                            <div class="col-sm-10 cust ">
-                                <input type="number" id="NumberofProjects7" name="NumberofProjects7" class="form-control" style="margin-left: 120px;" placeholder="No. of Projects..">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="row mb-3">
-                                <label for="NumberofPublications7" class="col-sm-2 col-form-label" style="white-space: nowrap;">Number of Publications 7</label>
-                            <div class="col-sm-10 cust" >
-                                <input type="number" id="NumberofPublications7" name="NumberofPublications7" class="form-control" style="margin-left: 120px;" placeholder="No. of Publications..">
-                            </div>
-                        </div>
-                    </div>
-                   
             </div>
-        </div>
-
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
-                <button type="button" class="btn btn-primary" id="previewButton" onclick="previewForm()">Preview</button>
-            </div>
-
-        </div>
-    </div>
-
-   
-
-
 <!-- 
-<div class="fixed-buttons">
-<button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
-<button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
-</div>
-</div> -->
+            <div class="row mb-3">
+                <label for="specialization" class="col-sm-2 col-form-label">Specialization</label>
+                <div class="col-sm-10">
+                    <input type="text" id="specialization" class="form-control" name="specialization"
+                        placeholder="Area of specialization in which you have done your above degree..." required="" />
+                    <div id="specializationError" style="color: red;"></div>
 
-
-
-
-    
-
-
-    <!-- Preview Modal -->
-    <div id="previewModal" class="modal fade custom-modal-size">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title mb-0">Preview</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closePreview()"></button>
                 </div>
-                <div class="modal-body " style="font-family: 'Times New Roman', Times, serif;">
-                    <div id="previewData">
-                    </div>
+
+            </div> -->
+
+            <div class="row mb-3">
+                <label for="Email" class="col-sm-2 col-form-label">E-mail</label>
+                <div class="col-sm-10">
+                    <input type="email" id="Email" class="form-control" name="Email"
+                        placeholder="Your E-mail Address..." value="" required="" />
+                    <div id="EmailError" style="color: red;"></div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closePreview()">Close</button>
-                    <input type="submit" class="btn btn-success" value="Submit">
+
+            </div>
+            <div class="row mb-3">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" id="resetButton" class="btn btn-secondary"
+                        onclick="resetForm()">Reset</button>
+
+                    <button type="button" id="confirmButton" class="btn btn-primary"
+                        onclick="validateForm()">Confirm</button>
                 </div>
             </div>
+
         </div>
-    </div>
-</div>
 
+            <!-- Add the additional part that will be shown on confirm -->
+            <div id="additionalInfo" style="display: none;">
+                <!-- Your additional content goes here -->
+                <!-- Example content: -->
+                <div>
+                    <div class="col-sm-12">
 
-</form>
-<script src="app1.js"></script>
+                        <div class="container mt-5" style="height: 70vh;";>
+                            <div class="row">
+                              
+                                <h4 class="text-center">Please identify your area of expertise and specialization by selecting classifications from the list below.</h4>
+                                <div class="col-md-6 shadow p-3 mb-7 bg-white rounded">
+                                    <label for="availableExpertise">Available Expertise and Subfields:</label>
+                                    <select id="availableExpertise" multiple class="form-control"
+                                        style="height: 30vh;"></select>
+
+                                </div>
+                                <div class="col-md-6 shadow p-3 mb-7 bg-white rounded">
+                                    <label for="availableExpertise">Selected Expertise</label>
+                                    <div id="selectedExpertiseBox" class="selected-expertise "></div>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-secondary" style="margin-top: 15px ;" onclick="resetSelection()">Reset</button>
+                                    <button type="button" id="confirmExpertiseButton" class="btn btn-primary me-md-2" style="margin-top: 15px ;" onclick="updateTable()">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container mt-5">
+                            <div class="h4 mt-3">Expertise Information</div>
+                            <table id="expertiseTable" class="table mt-3">
+                                <thead>
+                                    <tr>
+                                        <th>Expertise</th>
+                                        <th>Subfields</th>
+                                        <th>Number of Projects</th>
+                                        <th>Number of Publications</th>
+                                        <th>Number of Patents</th>
+                                        <th>Number of Awards</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- The table content will be dynamically updated based on selection -->
+                                </tbody>
+                            </table>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" id="resetButton" class="btn btn-secondary" onclick="res">Reset</button>
+                                <button type="button" class="btn btn-primary" id="confirmButton"
+                                    onclick="expertiseSelectedValidate()">Preview</button>
+                            </div>
+                        </div>
+                        <div id="previewModal" class="modal fade custom-modal-size">
+                            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title mb-0">Preview</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                    </div>
+                                    <div class="modal-body " style="font-family: 'Times New Roman', Times, serif;">
+                                        <div id="previewData">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-success" value="Submit">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
+    <!-- 
+  <div class="fixed-buttons">
+  <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+  <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
+  </div>
+  </div> -->
+    <!-- Include Bootstrap JS and jQuery -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="table vie.js"> </script>
 
 </body>
 </html>
