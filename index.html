@@ -1,327 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expertise Selection</title>
     <!-- Include Bootstrap CSS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <link rel="stylesheet" href="ext.css"> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="table vie.css">
-<!-- <link rel="stylesheet" href="ext.css"> -->
-</head>
-
-
-<body>
-
-    <header>
-        <span>
-            <div>
-                <img src="logo.png" class="top-left-image" alt="Logo" />
-            </div>
-            <div>
-                <h1>CSIR-NATIONAL ENVIRONMENTAL ENGINEERING RESEARCH INSTITUTE Nehru Marg, Nagpur 440 020.</h1>
-            </div>
-            <div >
-                <img src="neerilogo.png" class="top-right-image" alt="Logo" />
-            </div>
-        </span>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="row m-0">
+      <div class="col-1"><img src="assets/img/logo.png" class="" alt="Logo" height="80px" /></div>
+      <div class="col-10"><h1>CSIR-NATIONAL ENVIRONMENTAL ENGINEERING RESEARCH INSTITUTE Nehru Marg, Nagpur 440 020.</h1></div>
+      <div class="col-1"><img src="assets/img/neerilogo.png" class="" alt="Logo" height="80px" /></div>
     </header>
-
-    <div class="container container1">
-        <div class="attractive-heading">Framework for mapping employee's core expertise and specialization with existing
-            and future R&D prospects of the institution (e-Map) (MLP - 210)</div>
-        <!-- <div class="col-md-6 col-md-6" > -->
-        <form method="post" autocomplete="off" name="google-sheet" onsubmit="return validateForm();">
-            <!-- <h3>Personal Information</h3> -->
-            <div class="row mb-3">
-                <label for="institute" class="col-sm-2 col-form-label">Institute</label>
-                <div class="col-sm-10">
-                    <select id="institute" class="form-select" name="Institute" onchange="populateDepartments()">
-                        <option value="">Select your Institute...</option>
-                        <option value="Council of Scientific & Industrial Research">Council of Scientific & Industrial
-                            Research</option>
-                        <option value="Central Building Research Institute (CBRI), Roorkee">Central Building Research
-                            Institute (CBRI), Roorkee</option>
-                        <option value="Centre for Cellular & Molecular Biology (CCMB), Hyderabad">Centre for Cellular &
-                            Molecular Biology (CCMB), Hyderabad</option>
-                        <option value="Central Dug Research Institute (CDRI), Lucknow">Central Dug Research Institute
-                            (CDRI), Lucknow</option>
-                        <option value="Central Electrochemical Research Institute (CECRI), Karaikudi">Central
-                            Electrochemical Research Institute (CECRI), Karaikudi</option>
-                        <option value="Central Electronics Engineering Research Institute (CEERI) Pilani">Central
-                            Electronics Engineering Research Institute (CEERI) Pilani</option>
-                        <option value="Central Institute of Mining and Fuel Research, Dhanbad">Central Institute of
-                            Mining and Fuel Research, Dhanbad</option>
-                        <option value="Central Food Technological Research Institute (CFTRI), Mysore">Central Food
-                            Technological Research Institute (CFTRI), Mysore</option>
-                        <option value="Central Glass & Ceramic Research Institute (CGCRI), Kolkata">Central Glass &
-                            Ceramic Research Institute (CGCRI), Kolkata</option>
-                        <option value="Central Institute of Medicinal & Aromatic Plants (CIMAP), Lucknow">Central
-                            Institute of Medicinal & Aromatic Plants (CIMAP), Lucknow</option>
-                        <option value="Central Mechanical Engineering Research Institute (CMERI), Durgapur">Central
-                            Mechanical Engineering Research Institute (CMERI), Durgapur</option>
-                        <option value="CSIR-Fourth Paradigm Institute, Bengaluru">CSIR-Fourth Paradigm Institute,
-                            Bengaluru</option>
-                        <option value="Central Road Research Institute (CRRI), New Delhi">Central Road Research
-                            Institute (CRRI), New Delhi</option>
-                        <option value="Central Scientific Instruments Organisation CSIO, Chandigarh">Central Scientific
-                            Instruments Organisation CSIO, Chandigarh</option>
-                        <option value="Central Salt & Marine Chemicals Research Institute (CS&MCRI), Bhavnagar">Central
-                            Salt & Marine Chemicals Research Institute (CS&MCRI), Bhavnagar</option>
-                        <option value="Institute of Genomics & Integrative Biology (IGIB), New Delhi">Institute of
-                            Genomics & Integrative Biology (IGIB), New Delhi</option>
-                        <option value="Institute of Himalayan Bioresource Technology (IHBT), Palampur">Institute of
-                            Himalayan Bioresource Technology (IHBT), Palampur</option>
-                        <option value="Indian Institute of Chemical Biology (IICB), Kolkata">Indian Institute of
-                            Chemical Biology (IICB), Kolkata</option>
-                        <option value="Indian Institute of Chemical Technology (IICT), Hyderabad">Indian Institute of
-                            Chemical Technology (IICT), Hyderabad</option>
-                        <option value="Indian Institute of Petroleum (IIP), Dehradun">Indian Institute of Petroleum
-                            (IIP), Dehradun</option>
-                        <option value="Institute of Microbial Technology (IMT), Chandigarh">Institute of Microbial
-                            Technology (IMT), Chandigarh</option>
-                        <option value="Industrial Toxicology Research Centre (ITRC), Lucknow">Industrial Toxicology
-                            Research Centre (ITRC), Lucknow</option>
-                        <option value="National Aerospace Laboratories (NAL) Bangalore">National Aerospace Laboratories
-                            (NAL) Bangalore</option>
-                        <option value="National Botanical Research Institute (NBRI), Lucknow">National Botanical
-                            Research Institute (NBRI), Lucknow</option>
-                        <option value="National Chemical Laboratory (NCL), Pune">National Chemical Laboratory (NCL),
-                            Pune</option>
-                        <option value="National_Environmental_Engineering_Research_Institute_NEERI_Nagpur">National
-                            Environmental Engineering Research Institute NEERI, Nagpur</option>
-                        <option value="National Geophysical Research Institute (NGRI) Hyderabad">National Geophysical
-                            Research Institute (NGRI) Hyderabad</option>
-                        <option value="National Institute of Oceanography (NIO), Goa">National Institute of Oceanography
-                            (NIO), Goa</option>
-                        <option
-                            value="National Institute of Science Communication and Information Resources (NISCAIR) New Delhi">
-                            National Institute of Science Communication and Information Resources (NISCAIR) New Delhi
-                        </option>
-                        <option
-                            value="National Institute of Science, Technology and Development Studies (NISTADS) New Delhi">
-                            National Institute of Science, Technology and Development Studies (NISTADS) New Delhi
-                        </option>
-                        <option value="National Metallurgical Laboratory (NML), Jamshedpur">National Metallurgical
-                            Laboratory (NML), Jamshedpur</option>
-                        <option value="National Physical Laboratory (NPL), New Delhi">National Physical Laboratory
-                            (NPL), New Delhi</option>
-                        <option value="CSIR-Advanced Materials and Processes Research Institute AMPRI, Bhopal">
-                            CSIR-Advanced Materials and Processes Research Institute AMPRI, Bhopal</option>
-                        <option value="Institute of Minerals and Materials Technology-IMMT, Bhubaneswar">Institute of
-                            Minerals and Materials Technology-IMMT, Bhubaneswar</option>
-                        <option value="Indian Institute of Integrative Medicine (CSIR-IIIM), Jammu">Indian Institute of
-                            Integrative Medicine (CSIR-IIIM), Jammu</option>
-                        <option value="North East Institute of Science and Technology, Jorhat CSIR-NEIST">North East
-                            Institute of Science and Technology, Jorhat CSIR-NEIST</option>
-                        <option
-                            value="CSIR - National Institute for Interdisciplinary Science and Technology (NIIST), Thiruvananthapuram">
-                            CSIR - National Institute for Interdisciplinary Science and Technology (NIIST),
-                            Thiruvananthapuram</option>
-                        <option value="Structural Engineering Research Centre (SERC), Chennai">Structural Engineering
-                            Research Centre (SERC), Chennai</option>
-                    </select>
-                    <div id="instituteError" class="error-message" style="color: red;"></div>
-                </div>
-            </div>
-
-
-            <div class="row mb-3">
-                <label for="department" class="col-sm-2 col-form-label">Department</label>
-                <div class="col-sm-10">
-                    <select class="form-select" id="department" name="Department" onchange="populateEmployees()">
-                        <option value="">Select your Department...</option>
-                        <!-- Options for departments here... -->
-                    </select>
-                    <div id="departmentError" class="error-message" style="color: red;"></div>
-                </div>
-            </div>
-
-
-            <div class="row mb-3">
-                <label for="title" class="col-sm-2 col-form-label">Title</label>
-                <div class="col-sm-10">
-                    <select class="form-select" id="title" name="Title">
-                        <option value="" disabled selected>Select your title...</option>
-                        <option value="Dr">Dr.</option>
-                        <option value="Er">Er.</option>
-                        <option value="Mr">Mr.</option>
-                        <option value="Mrs">Mrs.</option>
-                        <option value="Ms">Ms.</option>
-                    </select>
-                    <div id="titleError" class="error-message" style="color: red;"></div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="name" class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                    <select class="form-select" id="name" name="Name" required="">
-                        <option value="">Select your name...</option>
-                        <!-- Options for names here... -->
-                    </select>
-                    <div id="nameError" class="error-message" style="color: red;"></div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="designation" class="col-sm-2 col-form-label">Designation</label>
-                <div class="col-sm-10">
-                    <select class="form-select" id="designation" name="Designation">
-                        <option value="" disabled selected>Select your designation..</option>
-                        <option value="Chief Scientist & Head">Chief Scientist & Head</option>
-                        <option value="Chief Scientist">Chief Scientist</option>
-                        <option value="Senior Principal Scientist & Head">Senior Principal Scientist & Head</option>
-                        <option value="Senior Principal Scientist">Senior Principal Scientist</option>
-                        <option value="Principal Scientist & Head">Principal Scientist & Head</option>
-                        <option value="Principal Scientist">Principal Scientist</option>
-                        <option value="Senior Scientist">Senior Scientist</option>
-                        <option value="Scientist">Scientist</option>
-                    </select>
-                    <div id="designationError" class="error-message" style="color: red;"></div>
-                </div>
-            </div>
-
-            <div class="row mb-3">
-                <label for="qualification" class="col-sm-2 col-form-label">Highest Qualification:</label>
-                <div class="col-sm-10">
-                    <select id="qualification" class="form-select" name="Qualification">
-                        <option value="" disabled selected>Select your highest qualification...</option>
-                        <option value="Post doctrate">Post Doc</option>
-                        <option value="Ph.D">Ph.D</option>
-                        <option value="Master of Science">M.S.</option>
-                        <option value="Master of Technology">M.Tech</option>
-                        <option value="Master of Engineering">M.E.</option>
-                    </select>
-                    <div id="qualificationError" class="error-message" style="color: red;"></div>
-                </div>
-            </div>
-<!-- 
-            <div class="row mb-3">
-                <label for="specialization" class="col-sm-2 col-form-label">Specialization</label>
-                <div class="col-sm-10">
-                    <input type="text" id="specialization" class="form-control" name="specialization"
-                        placeholder="Area of specialization in which you have done your above degree..." required="" />
-                    <div id="specializationError" style="color: red;"></div>
-
-                </div>
-
-            </div> -->
-
-            <div class="row mb-3">
-                <label for="Email" class="col-sm-2 col-form-label">E-mail</label>
-                <div class="col-sm-10">
-                    <input type="email" id="Email" class="form-control" name="Email"
-                        placeholder="Your E-mail Address..." value="" required="" />
-                    <div id="EmailError" style="color: red;"></div>
-                </div>
-
-            </div>
-            <div class="row mb-3">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="button" id="resetButton" class="btn btn-secondary"
-                        onclick="resetForm()">Reset</button>
-
-                    <button type="button" id="confirmButton" class="btn btn-primary"
-                        onclick="validateForm()">Confirm</button>
-                </div>
-            </div>
-
+    <div class="container p-3 my-3">
+      <div class="fw-bold fs-4 text-center mb-4">Framework for mapping employee's core expertise and specialization with existing and future R&D prospects of the institution (e-Map) (MLP - 210)</div>
+      <!-- <div class="col-md-6 col-md-6" > -->
+      <form method="post" autocomplete="off" name="google-sheet" onsubmit="return validateForm();">
+        <!-- <h3>Personal Information</h3> -->
+        <div class="row mb-3">
+          <label for="institute" class="col-sm-2 col-form-label">Institute</label>
+          <div class="col-sm-10">
+            <select id="institute" class="form-select" name="Institute" onchange="populateDepartments()">
+              <option value="">Select your Institute...</option>
+              <option value="Council of Scientific & Industrial Research">Council of Scientific & Industrial Research</option>
+              <option value="Central Building Research Institute (CBRI), Roorkee">Central Building Research Institute (CBRI), Roorkee</option>
+              <option value="Centre for Cellular & Molecular Biology (CCMB), Hyderabad">Centre for Cellular & Molecular Biology (CCMB), Hyderabad</option>
+              <option value="Central Dug Research Institute (CDRI), Lucknow">Central Dug Research Institute (CDRI), Lucknow</option>
+              <option value="Central Electrochemical Research Institute (CECRI), Karaikudi">Central Electrochemical Research Institute (CECRI), Karaikudi</option>
+              <option value="Central Electronics Engineering Research Institute (CEERI) Pilani">Central Electronics Engineering Research Institute (CEERI) Pilani</option>
+              <option value="Central Institute of Mining and Fuel Research, Dhanbad">Central Institute of Mining and Fuel Research, Dhanbad</option>
+              <option value="Central Food Technological Research Institute (CFTRI), Mysore">Central Food Technological Research Institute (CFTRI), Mysore</option>
+              <option value="Central Glass & Ceramic Research Institute (CGCRI), Kolkata">Central Glass & Ceramic Research Institute (CGCRI), Kolkata</option>
+              <option value="Central Institute of Medicinal & Aromatic Plants (CIMAP), Lucknow">Central Institute of Medicinal & Aromatic Plants (CIMAP), Lucknow</option>
+              <option value="Central Mechanical Engineering Research Institute (CMERI), Durgapur">Central Mechanical Engineering Research Institute (CMERI), Durgapur</option>
+              <option value="CSIR-Fourth Paradigm Institute, Bengaluru">CSIR-Fourth Paradigm Institute, Bengaluru</option>
+              <option value="Central Road Research Institute (CRRI), New Delhi">Central Road Research Institute (CRRI), New Delhi</option>
+              <option value="Central Scientific Instruments Organisation CSIO, Chandigarh">Central Scientific Instruments Organisation CSIO, Chandigarh</option>
+              <option value="Central Salt & Marine Chemicals Research Institute (CS&MCRI), Bhavnagar">Central Salt & Marine Chemicals Research Institute (CS&MCRI), Bhavnagar</option>
+              <option value="Institute of Genomics & Integrative Biology (IGIB), New Delhi">Institute of Genomics & Integrative Biology (IGIB), New Delhi</option>
+              <option value="Institute of Himalayan Bioresource Technology (IHBT), Palampur">Institute of Himalayan Bioresource Technology (IHBT), Palampur</option>
+              <option value="Indian Institute of Chemical Biology (IICB), Kolkata">Indian Institute of Chemical Biology (IICB), Kolkata</option>
+              <option value="Indian Institute of Chemical Technology (IICT), Hyderabad">Indian Institute of Chemical Technology (IICT), Hyderabad</option>
+              <option value="Indian Institute of Petroleum (IIP), Dehradun">Indian Institute of Petroleum (IIP), Dehradun</option>
+              <option value="Institute of Microbial Technology (IMT), Chandigarh">Institute of Microbial Technology (IMT), Chandigarh</option>
+              <option value="Industrial Toxicology Research Centre (ITRC), Lucknow">Industrial Toxicology Research Centre (ITRC), Lucknow</option>
+              <option value="National Aerospace Laboratories (NAL) Bangalore">National Aerospace Laboratories (NAL) Bangalore</option>
+              <option value="National Botanical Research Institute (NBRI), Lucknow">National Botanical Research Institute (NBRI), Lucknow</option>
+              <option value="National Chemical Laboratory (NCL), Pune">National Chemical Laboratory (NCL), Pune</option>
+              <option value="National_Environmental_Engineering_Research_Institute_NEERI_Nagpur">National Environmental Engineering Research Institute NEERI, Nagpur</option>
+              <option value="National Geophysical Research Institute (NGRI) Hyderabad">National Geophysical Research Institute (NGRI) Hyderabad</option>
+              <option value="National Institute of Oceanography (NIO), Goa">National Institute of Oceanography (NIO), Goa</option>
+              <option value="National Institute of Science Communication and Information Resources (NISCAIR) New Delhi">
+                National Institute of Science Communication and Information Resources (NISCAIR) New Delhi
+              </option>
+              <option value="National Institute of Science, Technology and Development Studies (NISTADS) New Delhi">
+                National Institute of Science, Technology and Development Studies (NISTADS) New Delhi
+              </option>
+              <option value="National Metallurgical Laboratory (NML), Jamshedpur">National Metallurgical Laboratory (NML), Jamshedpur</option>
+              <option value="National Physical Laboratory (NPL), New Delhi">National Physical Laboratory (NPL), New Delhi</option>
+              <option value="CSIR-Advanced Materials and Processes Research Institute AMPRI, Bhopal">CSIR-Advanced Materials and Processes Research Institute AMPRI, Bhopal</option>
+              <option value="Institute of Minerals and Materials Technology-IMMT, Bhubaneswar">Institute of Minerals and Materials Technology-IMMT, Bhubaneswar</option>
+              <option value="Indian Institute of Integrative Medicine (CSIR-IIIM), Jammu">Indian Institute of Integrative Medicine (CSIR-IIIM), Jammu</option>
+              <option value="North East Institute of Science and Technology, Jorhat CSIR-NEIST">North East Institute of Science and Technology, Jorhat CSIR-NEIST</option>
+              <option value="CSIR - National Institute for Interdisciplinary Science and Technology (NIIST), Thiruvananthapuram">
+                CSIR - National Institute for Interdisciplinary Science and Technology (NIIST), Thiruvananthapuram
+              </option>
+              <option value="Structural Engineering Research Centre (SERC), Chennai">Structural Engineering Research Centre (SERC), Chennai</option>
+            </select>
+            <div id="instituteError" class="error-message" style="color: red"></div>
+          </div>
         </div>
 
-            <!-- Add the additional part that will be shown on confirm -->
-            <div id="additionalInfo" style="display: none;">
-                <!-- Your additional content goes here -->
-                <!-- Example content: -->
-                <div>
-                    <div class="col-sm-12">
+        <div class="row mb-3">
+          <label for="department" class="col-sm-2 col-form-label">Department</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="department" name="Department" onchange="populateEmployees()">
+              <option value="">Select your Department...</option>
+              <!-- Options for departments here... -->
+            </select>
+            <div id="departmentError" class="error-message" style="color: red"></div>
+          </div>
+        </div>
 
-                        <div class="container mt-5" style="height: 70vh;";>
-                            <div class="row">
-                              
-                                <h4 class="text-center">Please identify your area of expertise and specialization by selecting classifications from the list below.</h4>
-                                <div class="col-md-6 shadow p-3 mb-7 bg-white rounded">
-                                    <label for="availableExpertise">Available Expertise and Subfields:</label>
-                                    <select id="availableExpertise" multiple class="form-control"
-                                        style="height: 30vh;"></select>
+        <div class="row mb-3">
+          <label for="title" class="col-sm-2 col-form-label">Title</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="title" name="Title">
+              <option value="" disabled selected>Select your title...</option>
+              <option value="Dr">Dr.</option>
+              <option value="Er">Er.</option>
+              <option value="Mr">Mr.</option>
+              <option value="Mrs">Mrs.</option>
+              <option value="Ms">Ms.</option>
+            </select>
+            <div id="titleError" class="error-message" style="color: red"></div>
+          </div>
+        </div>
 
-                                </div>
-                                <div class="col-md-6 shadow p-3 mb-7 bg-white rounded">
-                                    <label for="availableExpertise">Selected Expertise</label>
-                                    <div id="selectedExpertiseBox" class="selected-expertise "></div>
-                                </div>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-secondary" style="margin-top: 15px ;" onclick="resetSelection()">Reset</button>
-                                    <button type="button" id="confirmExpertiseButton" class="btn btn-primary me-md-2" style="margin-top: 15px ;" onclick="updateTable()">Confirm</button>
-                                </div>
-                            </div>
-                        </div>
+        <div class="row mb-3">
+          <label for="name" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="name" name="Name" required="">
+              <option value="">Select your name...</option>
+              <!-- Options for names here... -->
+            </select>
+            <div id="nameError" class="error-message" style="color: red"></div>
+          </div>
+        </div>
 
-                        <div class="container mt-5">
-                            <div class="h4 mt-3">Expertise Information</div>
-                            <table id="expertiseTable" class="table mt-3">
-                                <thead>
-                                    <tr>
-                                        <th>Expertise</th>
-                                        <th>Subfields</th>
-                                        <th>Number of Projects</th>
-                                        <th>Number of Publications</th>
-                                        <th>Number of Patents</th>
-                                        <th>Number of Awards</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- The table content will be dynamically updated based on selection -->
-                                </tbody>
-                            </table>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button type="button" id="resetButton" class="btn btn-secondary" onclick="res">Reset</button>
-                                <button type="button" class="btn btn-primary" id="confirmButton"
-                                    onclick="expertiseSelectedValidate()">Preview</button>
-                            </div>
-                        </div>
-                        <div id="previewModal" class="modal fade custom-modal-size">
-                            <div class="modal-dialog modal-dialog-scrollable modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title mb-0">Preview</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                    </div>
-                                    <div class="modal-body " style="font-family: 'Times New Roman', Times, serif;">
-                                        <div id="previewData">
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-success" value="Submit">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row mb-3">
+          <label for="designation" class="col-sm-2 col-form-label">Designation</label>
+          <div class="col-sm-10">
+            <select class="form-select" id="designation" name="Designation">
+              <option value="" disabled selected>Select your designation..</option>
+              <option value="Chief Scientist & Head">Chief Scientist & Head</option>
+              <option value="Chief Scientist">Chief Scientist</option>
+              <option value="Senior Principal Scientist & Head">Senior Principal Scientist & Head</option>
+              <option value="Senior Principal Scientist">Senior Principal Scientist</option>
+              <option value="Principal Scientist & Head">Principal Scientist & Head</option>
+              <option value="Principal Scientist">Principal Scientist</option>
+              <option value="Senior Scientist">Senior Scientist</option>
+              <option value="Scientist">Scientist</option>
+            </select>
+            <div id="designationError" class="error-message" style="color: red"></div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="qualification" class="col-sm-2 col-form-label">Highest Qualification:</label>
+          <div class="col-sm-10">
+            <select id="qualification" class="form-select" name="Qualification">
+              <option value="" disabled selected>Select your highest qualification...</option>
+              <option value="Post doctrate">Post Doc</option>
+              <option value="Ph.D">Ph.D</option>
+              <option value="Master of Science">M.S.</option>
+              <option value="Master of Technology">M.Tech</option>
+              <option value="Master of Engineering">M.E.</option>
+            </select>
+            <div id="qualificationError" class="error-message" style="color: red"></div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label for="Email" class="col-sm-2 col-form-label">E-mail</label>
+          <div class="col-sm-10">
+            <input type="email" id="Email" class="form-control" name="Email" placeholder="Your E-mail Address..." value="" required="" />
+            <div id="EmailError" style="color: red"></div>
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" id="resetButton" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+
+            <button type="button" id="confirmButton" class="btn btn-primary" onclick="validateForm()">Confirm</button>
+          </div>
+        </div>
+
+        <!-- Add the additional part that will be shown on confirm -->
+        <div id="additionalInfo" style="display: none">
+          <!-- Your additional content goes here -->
+          <!-- Example content: -->
+          <div>
+            <div class="col-sm-12">
+              <div class="container mt-5" style="height: 70vh" ;>
+                <div class="row">
+                  <h4 class="text-center">Please identify your area of expertise and specialization by selecting classifications from the list below.</h4>
+                  <div class="col-md-6 shadow p-3 mb-7 bg-white rounded">
+                    <label for="availableExpertise">Available Expertise and Subfields:</label>
+                    <select id="availableExpertise" multiple class="form-control" style="height: 30vh"></select>
+                  </div>
+                  <div class="col-md-6 shadow p-3 mb-7 bg-white rounded">
+                    <label for="availableExpertise">Selected Expertise</label>
+                    <div id="selectedExpertiseBox" class="selected-expertise"></div>
+                  </div>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-secondary" style="margin-top: 15px" onclick="resetSelection()">Reset</button>
+                    <button type="button" id="confirmExpertiseButton" class="btn btn-primary me-md-2" style="margin-top: 15px" onclick="updateTable()">Confirm</button>
+                  </div>
                 </div>
+              </div>
+
+              <div class="container mt-5">
+                <div class="h4 mt-3">Expertise Information</div>
+                <table id="expertiseTable" class="table mt-3">
+                  <thead>
+                    <tr>
+                      <th>Expertise</th>
+                      <th>Subfields</th>
+                      <th>Number of Projects</th>
+                      <th>Number of Publications</th>
+                      <th>Number of Patents</th>
+                      <th>Number of Awards</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- The table content will be dynamically updated based on selection -->
+                  </tbody>
+                </table>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                  <button type="button" id="resetButton" class="btn btn-secondary" onclick="res">Reset</button>
+                  <button type="button" class="btn btn-primary" id="confirmButton" onclick="expertiseSelectedValidate()">Preview</button>
+                </div>
+              </div>
+              <div id="previewModal" class="modal fade custom-modal-size">
+                <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title mb-0">Preview</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body" style="font-family: 'Times New Roman', Times, serif">
+                      <div id="previewData"></div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <input type="submit" class="btn btn-success" value="Submit" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-        </form>
-    
-    <!-- 
-  <div class="fixed-buttons">
-  <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
-  <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
-  </div>
-  </div> -->
+          </div>
+        </div>
+
+      </form>
+
+      <!-- <div class="fixed-buttons">
+        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+        <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
+        </div>-->
+    </div>
     <!-- Include Bootstrap JS and jQuery -->
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <script src="table vie.js"> </script>
-
-</body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
