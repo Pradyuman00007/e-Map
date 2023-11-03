@@ -294,7 +294,7 @@ function previewAllFields() {
   const name = $('#name').val();
   const designation = $('#designation').val();
   const qualification = $('#qualification').val();
-  const specialization = $('#specialization').val();
+  // const specialization = $('#specialization').val();
   const email = $('#Email').val();
 
   // Create a preview HTML
