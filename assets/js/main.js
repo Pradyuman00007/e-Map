@@ -87,7 +87,7 @@ function validateForm() {
 }
 
 function resetForm() {
-  const fieldsToReset = ['institute', 'department', 'title', 'name', 'designation', 'qualification', 'specialization', 'Email'];
+  const fieldsToReset = ['institute', 'department', 'title', 'name', 'designation', 'qualification', 'Email'];
   fieldsToReset.forEach(fieldName => {
     document.getElementById(fieldName).value = '';
   })
@@ -305,7 +305,7 @@ function previewAllFields() {
     <p><strong>Name:</strong> ${name}</p>
     <p><strong>Designation:</strong> ${designation}</p>
     <p><strong>Qualification:</strong> ${qualification}</p>
-    <p><strong>Specialization:</strong> ${specialization}</p>
+    
     <p><strong>Email:</strong> ${email}</p>
 
     <h4>Selected Expertise:</h4>
