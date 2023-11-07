@@ -60,27 +60,45 @@ function validateForm() {
   let isValid = true;
 
   // Reset previous error messages
-  document.querySelectorAll('.error-message').forEach(element => {
-      element.innerText = '';
+  document.querySelectorAll(".error-message").forEach((element) => {
+    element.innerText = "";
   });
 
   // Validate each field
-  const fieldsToValidate = ['institute', 'department', 'title', 'name', 'designation', 'qualification', 'Email'];
+  const fieldsToValidate = [
+    "institute",
+    "department",
+    "title",
+    "name",
+    "designation",
+    "qualification",
+    "Email",
+  ];
 
-  fieldsToValidate.forEach(field => {
-      const value = document.getElementById(field).value;
-      if (!value) {
-          const errorMessageElement = document.getElementById(`${field}Error`);
-          errorMessageElement.innerText = 'This field is required.';
-          isValid = false;
-      }
+  fieldsToValidate.forEach((field) => {
+    const value = document.getElementById(field).value;
+    if (!value) {
+      const errorMessageElement = document.getElementById(`${field}Error`);
+      errorMessageElement.innerText = "This field is required.";
+      isValid = false;
+    }
+
+    if (field === "Email" && !/^[^\s@]+@neeri\.res\.in$/.test(value)) {
+      const errorMessageElement = document.getElementById(`${field}Error`);
+      errorMessageElement.innerText =
+        "Please enter a valid email ending with @neeri.res.in";
+      isValid = false;
+    } else if (field === "Email" && /^[^\s@]+@neeri\.res\.in$/.test(value)) {
+      const errorMessageElement = document.getElementById(`${field}Error`);
+      errorMessageElement.innerText = ""; // Clear the error message for the email field
+    }
   });
 
   if (isValid) {
-      // If all fields are filled, show the other portion of the form
-      document.getElementById("additionalInfo").style.display = "block";
-      document.getElementById("confirmButton").disabled = true; 
-      document.getElementById("resetButton").disabled = true;
+    // If all fields are filled and email is in the correct format, show the other portion of the form
+    document.getElementById("additionalInfo").style.display = "block";
+    document.getElementById("confirmButton").disabled = true;
+    document.getElementById("resetButton").disabled = true;
   }
 
   return isValid;
@@ -222,7 +240,7 @@ function updateTable() {
       input.setAttribute('placeholder', `${inputName} for ${expertiseName}`);
       input.classList.add('form-control');
       input.addEventListener('input', function() {
-        if (this.value < 0) { // Check if the value is less than 0
+        if (this.value < 0 || this.value.length > 3) { // Check if the value is less than 0 or if the length is more than 3 digits
           this.value = ''; // Clear the field if it's negative
         }
       });
