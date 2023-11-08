@@ -21,13 +21,22 @@ function fetchAndPopulateSelects() {
         instituteSelect.appendChild(option);
       }
 
-      function populateDepartments() {
-        departmentSelect.innerHTML = '';
-        employeeSelect.innerHTML = '';
+       function populateDepartments() {
+        departmentSelect.innerHTML = "";
+        employeeSelect.innerHTML = "";
+
+        // Create a placeholder for the department select
+        const placeholderOption = document.createElement("option");
+        placeholderOption.value = "";
         const selectedInstitute = instituteSelect.value;
+        placeholderOption.text = `Select your ${selectedInstitute} Department...`;
+        placeholderOption.disabled = true;
+        placeholderOption.selected = true;
+        departmentSelect.appendChild(placeholderOption);
+
         const departments = jsonData[selectedInstitute].Departments;
         for (const department in departments) {
-          const option = document.createElement('option');
+          const option = document.createElement("option");
           option.value = department;
           option.text = department;
           departmentSelect.appendChild(option);
@@ -35,12 +44,22 @@ function fetchAndPopulateSelects() {
       }
 
       function populateEmployees() {
-        employeeSelect.innerHTML = '';
+        employeeSelect.innerHTML = "";
+
+        // Create a placeholder for the employee select
+        const placeholderOption = document.createElement("option");
+        placeholderOption.value = "";
         const selectedInstitute = instituteSelect.value;
         const selectedDepartment = departmentSelect.value;
-        const employees = jsonData[selectedInstitute].Departments[selectedDepartment].Employees;
-        employees.forEach(employee => {
-          const option = document.createElement('option');
+        placeholderOption.text = `Select employee in ${selectedDepartment}...`;
+        placeholderOption.disabled = true;
+        placeholderOption.selected = true;
+        employeeSelect.appendChild(placeholderOption);
+
+        const employees =
+          jsonData[selectedInstitute].Departments[selectedDepartment].Employees;
+        employees.forEach((employee) => {
+          const option = document.createElement("option");
           option.value = employee;
           option.text = employee;
           employeeSelect.appendChild(option);
