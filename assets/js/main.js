@@ -56,8 +56,7 @@ function fetchAndPopulateSelects() {
         placeholderOption.selected = true;
         employeeSelect.appendChild(placeholderOption);
 
-        const employees =
-          jsonData[selectedInstitute].Departments[selectedDepartment].Employees;
+        const employees = jsonData[selectedInstitute].Departments[selectedDepartment].Employees;
         employees.forEach((employee) => {
           const option = document.createElement("option");
           option.value = employee;
