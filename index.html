@@ -38,7 +38,7 @@
         method="post"
         autocomplete="off"
         name="google-sheet"
-        onsubmit="return validateForm();"
+        
       >
         <!-- <h3>Personal Information</h3> -->
         <div class="row mb-3">
@@ -50,7 +50,7 @@
               id="institute"
               class="form-select"
               name="Institute"
-              onchange="populateDepartments()"
+              
             >
               <option value="">Select your Institute...</option>
               <option value="Council of Scientific & Industrial Research">
@@ -253,7 +253,7 @@
               class="form-select"
               id="department"
               name="Department"
-              onchange="populateEmployees()"
+              
             >
               <option value="">Select your Department...</option>
               <!-- Options for departments here... -->
@@ -386,31 +386,30 @@
             </button>
           </div>
         </div>
-      </form>
-      <!-- Add the additional part that will be shown on confirm -->
-
-      <!-- <div class="fixed-buttons">
-        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
-        <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
+        <!-- Add the additional part that will be shown on confirm -->
+        
+        <!-- <div class="fixed-buttons">
+          <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+          <button type="button" id="resetButton" class="btn btn-secondary">Reset</button>
         </div>-->
-    </div>
-    <div id="additionalInfo" style="display: none">
-      <!-- Your additional content goes here -->
-      <!-- Example content: -->
-      <div>
-        <div class="col-sm-12">
-          <div class="container mt-5" style="height: 70vh" ;>
-            <div class="row">
-              <h4 class="text-center">
+      </div>
+      <div id="additionalInfo" style="display: none">
+        <!-- Your additional content goes here -->
+        <!-- Example content: -->
+        <div>
+          <div class="col-sm-12">
+            <div class="container mt-5" style="height: 70vh" ;>
+              <div class="row">
+                <h4 class="text-center">
                 Please identify your area of expertise and specialization by
                 selecting classifications from the list below.
               </h4>
               <div class="col-md-6 shadow p-3 mb-7 bg-white rounded">
                 <label for="availableExpertise"
-                  >Available Expertise and Subfields:</label
+                >Available Expertise and Subfields:</label
                 >
                 <select
-                  id="availableExpertise"
+                id="availableExpertise"
                   multiple
                   class="form-control"
                   style="height: 30vh"
@@ -422,20 +421,20 @@
               </div>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <button
-                  type="button"
-                  class="btn btn-secondary"
-                  style="margin-top: 15px"
-                  onclick="resetSelection()"
+                type="button"
+                class="btn btn-secondary"
+                style="margin-top: 15px"
+                onclick="resetSelection()"
                 >
-                  Reset
-                </button>
+                Reset
+              </button>
                 <button
-                  type="button"
+                type="button"
                   id="confirmExpertiseButton"
                   class="btn btn-primary me-md-2"
                   style="margin-top: 15px"
                   onclick="updateTable()"
-                >
+                  >
                   Confirm
                 </button>
               </div>
@@ -465,14 +464,14 @@
                 id="resetButton"
                 class="btn btn-secondary"
                 onclick="res"
-              >
+                >
                 Reset
               </button>
               <button
-                type="button"
-                class="btn btn-primary"
-                id="confirmButton"
-                onclick="expertiseSelectedValidate()"
+              type="button"
+              class="btn btn-primary"
+              id="confirmButton"
+              onclick="expertiseSelectedValidate()"
               >
                 Preview
               </button>
@@ -484,15 +483,15 @@
                 <div class="modal-header">
                   <h4 class="modal-title mb-0">Preview</h4>
                   <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
                   ></button>
                 </div>
                 <div
-                  class="modal-body"
-                  style="font-family: 'Times New Roman', Times, serif"
+                class="modal-body"
+                style="font-family: 'Times New Roman', Times, serif"
                 >
                   <div id="previewData"></div>
                 </div>
@@ -501,7 +500,7 @@
                     type="button"
                     class="btn btn-secondary"
                     data-bs-dismiss="modal"
-                  >
+                    >
                     Close
                   </button>
                   <input type="submit" class="btn btn-success" value="Submit" />
@@ -512,6 +511,7 @@
         </div>
       </div>
     </div>
+  </form>
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script
@@ -521,4 +521,5 @@
     ></script>
     <script src="assets/js/main.js"></script>
   </body>
-</html>
+  </html>
+  
