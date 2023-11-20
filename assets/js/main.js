@@ -202,11 +202,19 @@ function addSelectedExpertise() {
     const expertise = selectedOption.parent('optgroup').attr('label');
     selectedSubfields.add(subfield);
     const expertiseBox = $('<div>').addClass('alert alert-info mb-2').text(`${expertise} - ${subfield}`);
+    
+    // Add an event listener to remove the expertise when clicked
+    expertiseBox.click(function () {
+      selectedSubfields.delete(subfield);
+      $(this).remove();
+    });
+
     $('#selectedExpertiseBox').append(expertiseBox);
 
     console.log('Selected Expertise:', expertise, 'Subfield:', subfield);
   });
 }
+
 function expertiseSelectedValidate() {
   const selectedExpertiseCount = selectedSubfields.size;
 
@@ -435,7 +443,7 @@ const hasSubmitted = localStorage.getItem('formSubmitted');
             formData.append(`Awards${index + 1}`, awards);
         });
 
-        // // Log the form data to the console
+        // Log the form data to the console
         // for (let pair of formData.entries()) {
         //     console.log(pair[0] + ': ' + pair[1]);
         // }
